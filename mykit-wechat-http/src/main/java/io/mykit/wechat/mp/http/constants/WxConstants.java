@@ -16,4 +16,51 @@ public class WxConstants {
      * 状态码
      */
     public static final String ERRCODE = "errcode";
+
+
+    /**
+     * 上传多媒体图片类型
+     */
+    public static final String MEDIA_TYPE_IMAGE = "image";
+    /**
+     * 语音
+     */
+    public static final String MEDIA_TYPE_VOICE = "voice";
+    /**
+     * 视频
+     */
+    public static final String MEDIA_TYPE_VIDEO = "video";
+    /**
+     * 缩略图
+     */
+    public static final String MEDIA_TYPE_THUMB = "thumb";
+
+    /**
+     * 图文消息
+     */
+    public static final String TYPE_MPNEWS = "mpnews";
+    /**
+     * 图片
+     */
+    public static final String TYPE_IMAGE = "image";
+    /**
+     * 文本
+     */
+    public static final String TYPE_TEXT = "text";
+    /**
+     * 语音
+     */
+    public static final String TYPE_VIOCE = "voice";
+    /**
+     * 音乐
+     */
+    public static final String TYPE_MUSIC = "music";
+    /**
+     * 视频
+     */
+    public static final String TYPE_VIDEO = "video";
+    /**
+     * 微信卡券
+     */
+    public static final String TYPE_WXCARD = "wxcard";
 }

@@ -108,5 +108,32 @@ public class BaseProp {
      * 上传图文消息内的图片获取URL
      */
     public static final String WEIXIN_GROUP_UPLOADIMG = "weixin.group.uploadimg";
+    /**
+     * 上传多媒体文件
+     */
+    public static final String WEIXIN_BASE_UPLOAD = "weixin.base.upload";
+    /**
+     * 上传多媒体文件
+     */
+    public static final String WEIXIN_BASE_UPLOAD_FILE = "weixin.base.upload.file";
+    /**
+     * 下载多媒体文件
+     */
+    public static final String WEIXIN_BASE_DOWNLOAD_FILE = "weixin.base.download.file";
+
+    /**
+     * 上传微信图文消息
+     */
+    public static final String WEIXIN_MEDIA_NEWS_UPLOAD = "weixin.media.news.upload";
+    /**
+     * 上传视频素材
+     */
+    public static final String WEIXIN_MEDIA_VIDEO_UPLOAD = "weixin.media.video.upload";
+
+    /**
+     * 根据标签进行群发
+     */
+    public static final String WEIXIN_MASS_SENDALL = "weixin.mass_sendall";
+
 
 }

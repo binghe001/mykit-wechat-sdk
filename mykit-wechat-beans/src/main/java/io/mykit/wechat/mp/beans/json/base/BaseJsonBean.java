@@ -1,5 +1,6 @@
 package io.mykit.wechat.mp.beans.json.base;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.Serializable;
@@ -16,6 +17,10 @@ public class BaseJsonBean implements Serializable {
 
     public String toString(Object obj){
         return JSONObject.toJSONString(obj);
+    }
+
+    public String toJsonArrayString(Object obj){
+        return JSONArray.toJSONString(obj);
     }
 
 }
