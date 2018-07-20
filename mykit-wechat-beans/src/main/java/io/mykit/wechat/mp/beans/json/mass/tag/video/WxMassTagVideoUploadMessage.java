@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class WxMassVideoUploadMessage extends BaseJsonBean {
+public class WxMassTagVideoUploadMessage extends BaseJsonBean {
     private static final long serialVersionUID = 4744414632367354000L;
     //此处media_id需通过基础支持中的上传下载多媒体文件来得到
     private String media_id;

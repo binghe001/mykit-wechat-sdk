@@ -23,4 +23,8 @@ public class BaseJsonBean implements Serializable {
         return JSONArray.toJSONString(obj);
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

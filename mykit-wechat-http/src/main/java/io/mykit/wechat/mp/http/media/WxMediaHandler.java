@@ -3,8 +3,10 @@ package io.mykit.wechat.mp.http.media;
 import io.mykit.wechat.mp.beans.json.mass.tag.image.WxMassTagImageMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.news.WxMassTagNewsMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.text.WxMassTagTextMessage;
-import io.mykit.wechat.mp.beans.json.mass.tag.video.WxMassVideoUploadMessage;
+import io.mykit.wechat.mp.beans.json.mass.tag.video.WxMassTagVideoMessage;
+import io.mykit.wechat.mp.beans.json.mass.tag.video.WxMassTagVideoUploadMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.voice.WxMassTagVoiceMessage;
+import io.mykit.wechat.mp.beans.json.mass.tag.wxcard.WxMassTagCardMessage;
 import io.mykit.wechat.mp.beans.json.medis.WxMediaUploadNews;
 import io.mykit.wechat.mp.config.LoadProp;
 import io.mykit.wechat.mp.http.base.HttpConnectionUtils;
@@ -257,9 +259,79 @@ public class WxMediaHandler extends BaseHandler {
      * }
      * @throws Exception
      */
-     public static String uploadMediaVideo(String appid, String appsecret, WxMassVideoUploadMessage wxMassVideoUploadMessage) throws Exception{
+     public static String uploadMediaVideo(String appid, String appsecret, WxMassTagVideoUploadMessage wxMassVideoUploadMessage) throws Exception{
         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MEDIA_VIDEO_UPLOAD), wxMassVideoUploadMessage.toString(), getAccessTokenNameValuePairs(appid, appsecret), null, HttpConnectionUtils.TYPE_STREAM);
      }
 
+
+    /**
+     * 视频（注意此处media_id需通过uploadMediaVideo方法得到）
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassTagVideoMessage 封装的请求体，格式如下：
+     *  {
+     *    "filter":{
+     *       "is_to_all":false,
+     *       "tag_id":2
+     *    },
+     *    "mpvideo":{
+     *       "media_id":"IhdaAQXuvJtGzwwc0abfXnzeezfO0NgPK6AQYShD8RQYMTtfzbLdBIQkQziv2XJc"
+     *    },
+     *     "msgtype":"mpvideo"
+     * }
+     * @return 结果数据：
+     * {
+     *    "errcode":0,
+     *    "errmsg":"send job submission success",
+     *    "msg_id":34182,
+     *    "msg_data_id": 206227730
+     * }
+     * type	媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb），图文消息为news
+     * errcode	错误码
+     * errmsg	错误信息
+     * msg_id	消息发送任务的ID
+     * msg_data_id	消息的数据ID，该字段只有在群发图文消息时，才会出现。可以用于在图文分析数据接口中，获取到对应的图文消息的数据，是图文分析数据接口中的msgid字段中的前半部分，详见图文分析数据接口中的msgid字段的介绍。
+     * 请注意：在返回成功时，意味着群发任务提交成功，并不意味着此时群发已经结束，所以，仍有可能在后续的发送过程中出现异常情况导致用户未收到消息，如消息有时会进行审核、服务器不稳定等。此外，群发任务一般需要较长的时间才能全部发送完毕，请耐心等待。
+     * 错误时微信会返回错误码等信息，请根据错误码查询错误信息
+     * @throws Exception
+     */
+     public static String sendVideoMessageByTag(String appid, String secret, WxMassTagVideoMessage wxMassTagVideoMessage) throws Exception{
+         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SENDALL), wxMassTagVideoMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+     }
+
+    /**
+     * 卡券消息（注意图文消息的media_id需要通过上述方法来得到）
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassTagCardMessage 封装的请求体，格式如下：
+     *  {
+     *    "filter":{
+     *       "is_to_all":false,
+     *       "tag_id":"2"
+     *    },
+     *   "wxcard":{
+     *            "card_id":"123dsdajkasd231jhksad"
+     *             },
+     *    "msgtype":"wxcard"
+     * }
+     * @return 结果数据：
+     * {
+     *    "errcode":0,
+     *    "errmsg":"send job submission success",
+     *    "msg_id":34182,
+     *    "msg_data_id": 206227730
+     * }
+     * type	媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb），图文消息为news
+     * errcode	错误码
+     * errmsg	错误信息
+     * msg_id	消息发送任务的ID
+     * msg_data_id	消息的数据ID，该字段只有在群发图文消息时，才会出现。可以用于在图文分析数据接口中，获取到对应的图文消息的数据，是图文分析数据接口中的msgid字段中的前半部分，详见图文分析数据接口中的msgid字段的介绍。
+     * 请注意：在返回成功时，意味着群发任务提交成功，并不意味着此时群发已经结束，所以，仍有可能在后续的发送过程中出现异常情况导致用户未收到消息，如消息有时会进行审核、服务器不稳定等。此外，群发任务一般需要较长的时间才能全部发送完毕，请耐心等待。
+     * 错误时微信会返回错误码等信息，请根据错误码查询错误信息
+     * @throws Exception
+     */
+     public static String sendWxcardMessageByTag(String appid, String secret, WxMassTagCardMessage wxMassTagCardMessage) throws Exception{
+         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SENDALL), wxMassTagCardMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+     }
 
 }

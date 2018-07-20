@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class WxMassVideoUploadResponseMessage extends BaseJsonBean {
+public class WxMassTagVideoUploadResponseMessage extends BaseJsonBean {
     private static final long serialVersionUID = 832294288132768730L;
     private String type = "video";
     private String media_id;
