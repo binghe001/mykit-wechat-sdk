@@ -1,4 +1,4 @@
-package io.mykit.wechat.mp.beans.json.medis;
+package io.mykit.wechat.mp.beans.json.media;
 
 import io.mykit.wechat.mp.beans.json.base.BaseJsonBean;
 import lombok.AllArgsConstructor;

@@ -1,5 +1,11 @@
 package io.mykit.wechat.mp.http.media;
 
+import io.mykit.wechat.mp.beans.json.mass.openid.image.WxMassOpenIdImageMessage;
+import io.mykit.wechat.mp.beans.json.mass.openid.news.WxMassOpenIdNewsMassage;
+import io.mykit.wechat.mp.beans.json.mass.openid.text.WxMassOpenIdTextMessage;
+import io.mykit.wechat.mp.beans.json.mass.openid.video.WxMassOpenIdVideoMessage;
+import io.mykit.wechat.mp.beans.json.mass.openid.voice.WxMassOpenIdVoiceMessage;
+import io.mykit.wechat.mp.beans.json.mass.openid.wxcard.WxMassOpenIdCardMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.image.WxMassTagImageMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.news.WxMassTagNewsMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.text.WxMassTagTextMessage;
@@ -7,7 +13,7 @@ import io.mykit.wechat.mp.beans.json.mass.tag.video.WxMassTagVideoMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.video.WxMassTagVideoUploadMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.voice.WxMassTagVoiceMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.wxcard.WxMassTagCardMessage;
-import io.mykit.wechat.mp.beans.json.medis.WxMediaUploadNews;
+import io.mykit.wechat.mp.beans.json.media.WxMediaUploadNews;
 import io.mykit.wechat.mp.config.LoadProp;
 import io.mykit.wechat.mp.http.base.HttpConnectionUtils;
 import io.mykit.wechat.mp.http.constants.WxConstants;
@@ -333,5 +339,250 @@ public class WxMediaHandler extends BaseHandler {
      public static String sendWxcardMessageByTag(String appid, String secret, WxMassTagCardMessage wxMassTagCardMessage) throws Exception{
          return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SENDALL), wxMassTagCardMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
      }
+
+    /**
+     * 根据openId群发图文消息
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassOpenIdNewsMassage 封装微信图文消息
+     * 格式如下：
+     *
+     *{
+     *    "touser":[
+     *     "OPENID1",
+     *     "OPENID2"
+     *    ],
+     *    "mpnews":{
+     *       "media_id":"123dsdajkasd231jhksad"
+     *    },
+     *     "msgtype":"mpnews"，
+     *     "send_ignore_reprint":0
+     * }
+     *
+     * @return 结果
+     * 正确时返回：
+     * {
+     *    "errcode":0,
+     *    "errmsg":"send job submission success",
+     *    "msg_id":34182,
+     *    "msg_data_id": 206227730
+     * }
+     *
+     * type	媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb），次数为news，即图文消息
+     * errcode	错误码
+     * errmsg	错误信息
+     * msg_id	消息发送任务的ID
+     * msg_data_id	消息的数据ID，，该字段只有在群发图文消息时，才会出现。可以用于在图文分析数据接口中，获取到对应的图文消息的数据，是图文分析数据接口中的msgid字段中的前半部分，详见图文分析数据接口中的msgid字段的介绍。
+     *
+     * 错误时返回具体状态信息
+     *{"errcode": 状态码, "errmsg":"状态信息"}
+     * @throws Exception
+     */
+     public static String sendWxNewsMessageByOpenId(String appid, String secret, WxMassOpenIdNewsMassage wxMassOpenIdNewsMassage) throws Exception{
+         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SEND), wxMassOpenIdNewsMassage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+     }
+
+    /**
+     * 根据openId群发文本消息
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassOpenIdTextMessage 封装微信文本消息
+     * 格式如下：
+     *
+     *{
+     *    "touser":[
+     *     "OPENID1",
+     *     "OPENID2"
+     *    ],
+     *     "msgtype": "text",
+     *     "text": { "content": "hello from boxer."}
+     * }
+     *
+     * @return 结果
+     * 正确时返回：
+     * {
+     *    "errcode":0,
+     *    "errmsg":"send job submission success",
+     *    "msg_id":34182,
+     *    "msg_data_id": 206227730
+     * }
+     *
+     * type	媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb），次数为news，即图文消息
+     * errcode	错误码
+     * errmsg	错误信息
+     * msg_id	消息发送任务的ID
+     * msg_data_id	消息的数据ID，，该字段只有在群发图文消息时，才会出现。可以用于在图文分析数据接口中，获取到对应的图文消息的数据，是图文分析数据接口中的msgid字段中的前半部分，详见图文分析数据接口中的msgid字段的介绍。
+     *
+     * 错误时返回具体状态信息
+     *{"errcode": 状态码, "errmsg":"状态信息"}
+     * @throws Exception
+     */
+     public static String sendWxTextMessageByOpenId(String appid, String secret, WxMassOpenIdTextMessage wxMassOpenIdTextMessage) throws Exception{
+         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SEND), wxMassOpenIdTextMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+     }
+
+
+    /**
+     * 根据openId群发语音消息
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassOpenIdVoiceMessage 封装微信语音消息
+     * 格式如下：
+     *
+     *{
+     *    "touser":[
+     *     "OPENID1",
+     *     "OPENID2"
+     *    ],
+     *    "voice":{
+     *       "media_id":"mLxl6paC7z2Tl-NJT64yzJve8T9c8u9K2x-Ai6Ujd4lIH9IBuF6-2r66mamn_gIT"
+     *    },
+     *     "msgtype":"voice"
+     * }
+     *
+     * @return 结果
+     * 正确时返回：
+     * {
+     *    "errcode":0,
+     *    "errmsg":"send job submission success",
+     *    "msg_id":34182,
+     *    "msg_data_id": 206227730
+     * }
+     *
+     * type	媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb），次数为news，即图文消息
+     * errcode	错误码
+     * errmsg	错误信息
+     * msg_id	消息发送任务的ID
+     * msg_data_id	消息的数据ID，，该字段只有在群发图文消息时，才会出现。可以用于在图文分析数据接口中，获取到对应的图文消息的数据，是图文分析数据接口中的msgid字段中的前半部分，详见图文分析数据接口中的msgid字段的介绍。
+     *
+     * 错误时返回具体状态信息
+     *{"errcode": 状态码, "errmsg":"状态信息"}
+     * @throws Exception
+     */
+    public static String sendWxVoiceMessageByOpenId(String appid, String secret, WxMassOpenIdVoiceMessage wxMassOpenIdVoiceMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SEND), wxMassOpenIdVoiceMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
+    /**
+     * 根据openId群发图片消息
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassOpenIdImageMessage 封装微信图片消息
+     * 格式如下：
+     *
+     *{
+     *    "touser":[
+     *     "OPENID1",
+     *     "OPENID2"
+     *    ],
+     *    "image":{
+     *       "media_id":"BTgN0opcW3Y5zV_ZebbsD3NFKRWf6cb7OPswPi9Q83fOJHK2P67dzxn11Cp7THat"
+     *    },
+     *     "msgtype":"image"
+     * }
+     *
+     * @return 结果
+     * 正确时返回：
+     * {
+     *    "errcode":0,
+     *    "errmsg":"send job submission success",
+     *    "msg_id":34182,
+     *    "msg_data_id": 206227730
+     * }
+     *
+     * type	媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb），次数为news，即图文消息
+     * errcode	错误码
+     * errmsg	错误信息
+     * msg_id	消息发送任务的ID
+     * msg_data_id	消息的数据ID，，该字段只有在群发图文消息时，才会出现。可以用于在图文分析数据接口中，获取到对应的图文消息的数据，是图文分析数据接口中的msgid字段中的前半部分，详见图文分析数据接口中的msgid字段的介绍。
+     *
+     * 错误时返回具体状态信息
+     *{"errcode": 状态码, "errmsg":"状态信息"}
+     * @throws Exception
+     */
+    public static String sendWxImageMessageByOpenId(String appid, String secret, WxMassOpenIdImageMessage wxMassOpenIdImageMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SEND), wxMassOpenIdImageMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
+
+    /**
+     * 根据openId群发视频消息
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassOpenIdVideoMessage 封装微信视频消息
+     * 格式如下：
+     *
+     *{
+     *    "touser":[
+     *     "OPENID1",
+     *     "OPENID2"
+     *    ],
+     *    "mpvideo":{
+     *       "media_id":"123dsdajkasd231jhksad",
+     *       "title":"TITLE",
+     *       "description":"DESCRIPTION"
+     *    },
+     *     "msgtype":"mpvideo"
+     * }
+     *
+     * @return 结果
+     * 正确时返回：
+     * {
+     *    "errcode":0,
+     *    "errmsg":"send job submission success",
+     *    "msg_id":34182,
+     *    "msg_data_id": 206227730
+     * }
+     *
+     * type	媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb），次数为news，即图文消息
+     * errcode	错误码
+     * errmsg	错误信息
+     * msg_id	消息发送任务的ID
+     * msg_data_id	消息的数据ID，，该字段只有在群发图文消息时，才会出现。可以用于在图文分析数据接口中，获取到对应的图文消息的数据，是图文分析数据接口中的msgid字段中的前半部分，详见图文分析数据接口中的msgid字段的介绍。
+     *
+     * 错误时返回具体状态信息
+     *{"errcode": 状态码, "errmsg":"状态信息"}
+     * @throws Exception
+     */
+    public static String sendWxVideoMessageByOpenId(String appid, String secret, WxMassOpenIdVideoMessage wxMassOpenIdVideoMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SEND), wxMassOpenIdVideoMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
+
+    /**
+     * 根据openId群发卡券消息
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassOpenIdCardMessage 封装微信卡券消息
+     * 格式如下：
+     *{
+     *    "touser":[
+     *     "OPENID1",
+     *     "OPENID2"
+     *    ],
+     *         "wxcard": {"card_id":"123dsdajkasd231jhksad"}
+     *         "msgtype":"wxcard"
+     * }
+     *
+     * @return 结果
+     * 正确时返回：
+     * {
+     *    "errcode":0,
+     *    "errmsg":"send job submission success",
+     *    "msg_id":34182,
+     *    "msg_data_id": 206227730
+     * }
+     *
+     * type	媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb），次数为news，即图文消息
+     * errcode	错误码
+     * errmsg	错误信息
+     * msg_id	消息发送任务的ID
+     * msg_data_id	消息的数据ID，，该字段只有在群发图文消息时，才会出现。可以用于在图文分析数据接口中，获取到对应的图文消息的数据，是图文分析数据接口中的msgid字段中的前半部分，详见图文分析数据接口中的msgid字段的介绍。
+     *
+     * 错误时返回具体状态信息
+     *{"errcode": 状态码, "errmsg":"状态信息"}
+     * @throws Exception
+     */
+    public static String sendWxCardMessageByOpenId(String appid, String secret, WxMassOpenIdCardMessage wxMassOpenIdCardMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SEND), wxMassOpenIdCardMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
+
 
 }
