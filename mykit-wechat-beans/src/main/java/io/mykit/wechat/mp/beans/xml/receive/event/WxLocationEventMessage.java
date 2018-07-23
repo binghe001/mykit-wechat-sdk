@@ -4,6 +4,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import io.mykit.wechat.mp.beans.xml.receive.event.base.WxBaseReceiveEventMessage;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class WxLocationEventMessage extends WxBaseReceiveEventMessage {
     private static final long serialVersionUID = -5956367691437971176L;
 

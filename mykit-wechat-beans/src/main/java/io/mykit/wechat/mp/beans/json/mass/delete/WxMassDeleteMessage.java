@@ -3,6 +3,7 @@ package io.mykit.wechat.mp.beans.json.mass.delete;
 import io.mykit.wechat.mp.beans.json.base.BaseJsonBean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class WxMassDeleteMessage extends BaseJsonBean {
     private static final long serialVersionUID = 2619151913293065513L;
     //发送出去的消息ID
@@ -24,4 +26,8 @@ public class WxMassDeleteMessage extends BaseJsonBean {
     //要删除的文章在图文消息中的位置，第一篇编号为1，该字段不填或填0会删除全部文章
     private Integer article_idx;
 
+    @Override
+    public String toString() {
+        return super.toString(this);
+    }
 }

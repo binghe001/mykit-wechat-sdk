@@ -6,6 +6,7 @@ import io.mykit.wechat.mp.beans.xml.receive.base.WxBaseReceiveMessage;
 import io.mykit.wechat.utils.xml.XStreamCDataConverter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class WxReceiveTextMessage extends WxBaseReceiveMessage {
     private static final long serialVersionUID = -7346355738576226082L;
 
@@ -29,6 +31,6 @@ public class WxReceiveTextMessage extends WxBaseReceiveMessage {
 
     @Override
     public String toString(){
-        return toString(this);
+        return toJsonString(this);
     }
 }

@@ -3,6 +3,7 @@ package io.mykit.wechat.mp.beans.json.mass.tag.video;
 import io.mykit.wechat.mp.beans.json.base.BaseJsonBean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class WxMassTagVideoUploadMessage extends BaseJsonBean {
     private static final long serialVersionUID = 4744414632367354000L;
     //此处media_id需通过基础支持中的上传下载多媒体文件来得到

@@ -6,6 +6,7 @@ import io.mykit.wechat.mp.beans.xml.send.base.WxBaseSendMessage;
 import io.mykit.wechat.utils.xml.XStreamCDataConverter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class WxSendTextMessage extends WxBaseSendMessage {
     private static final long serialVersionUID = -4513717039281574054L;
 

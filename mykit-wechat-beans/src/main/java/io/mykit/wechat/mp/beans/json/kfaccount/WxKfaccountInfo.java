@@ -3,6 +3,7 @@ package io.mykit.wechat.mp.beans.json.kfaccount;
 import io.mykit.wechat.mp.beans.json.base.BaseJsonBean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class WxKfaccountInfo extends BaseJsonBean {
 
     private static final long serialVersionUID = -5304618220704986216L;

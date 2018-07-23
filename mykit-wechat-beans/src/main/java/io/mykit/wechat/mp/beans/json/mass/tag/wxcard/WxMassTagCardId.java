@@ -3,6 +3,7 @@ package io.mykit.wechat.mp.beans.json.mass.tag.wxcard;
 import io.mykit.wechat.mp.beans.json.base.BaseJsonBean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class WxMassTagCardId extends BaseJsonBean {
     private static final long serialVersionUID = 2536366285597788463L;
     private String card_id;

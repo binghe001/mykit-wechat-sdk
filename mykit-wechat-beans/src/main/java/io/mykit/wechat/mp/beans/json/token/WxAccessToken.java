@@ -2,6 +2,7 @@ package io.mykit.wechat.mp.beans.json.token;
 
 import io.mykit.wechat.mp.beans.json.base.BaseJsonBean;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @Author: liuyazhuang
@@ -9,6 +10,7 @@ import lombok.Data;
  * @Description: 微信的AccessToken
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class WxAccessToken extends BaseJsonBean {
     private static final long serialVersionUID = -2954185406720903761L;
     //解析的Access_token

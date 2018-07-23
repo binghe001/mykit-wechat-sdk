@@ -5,6 +5,7 @@ import com.thoughtworks.xstream.annotations.XStreamConverter;
 import io.mykit.wechat.mp.beans.xml.receive.base.WxBaseReceiveMessage;
 import io.mykit.wechat.utils.xml.XStreamCDataConverter;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @Author: liuyazhuang
@@ -12,6 +13,7 @@ import lombok.Data;
  * @Description: 微信接收事件基础类
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class WxBaseReceiveEventMessage extends WxBaseReceiveMessage {
     private static final long serialVersionUID = -4727976028597439732L;
 

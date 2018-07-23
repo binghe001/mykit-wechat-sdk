@@ -3,6 +3,7 @@ package io.mykit.wechat.mp.beans.xml.receive.event.menu;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class WxMenuPicSysPhotoInfoMessage implements Serializable {
     private static final long serialVersionUID = -7753856734346170701L;
 

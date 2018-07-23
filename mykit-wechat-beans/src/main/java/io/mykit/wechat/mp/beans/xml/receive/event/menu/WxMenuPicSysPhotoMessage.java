@@ -2,11 +2,11 @@ package io.mykit.wechat.mp.beans.xml.receive.event.menu;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamConverter;
-import io.mykit.wechat.mp.beans.xml.receive.base.WxBaseReceiveMessage;
 import io.mykit.wechat.mp.beans.xml.receive.event.base.WxBaseReceiveEventMessage;
 import io.mykit.wechat.utils.xml.XStreamCDataConverter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class WxMenuPicSysPhotoMessage extends WxBaseReceiveEventMessage {
     private static final long serialVersionUID = -2435908162906954285L;
 
@@ -30,6 +31,6 @@ public class WxMenuPicSysPhotoMessage extends WxBaseReceiveEventMessage {
 
     @Override
     public String toString() {
-        return super.toString(this);
+        return super.toJsonString(this);
     }
 }

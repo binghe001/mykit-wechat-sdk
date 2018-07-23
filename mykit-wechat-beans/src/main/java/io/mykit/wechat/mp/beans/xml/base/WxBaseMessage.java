@@ -1,12 +1,11 @@
 package io.mykit.wechat.mp.beans.xml.base;
 
-import com.alibaba.fastjson.JSONObject;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamConverter;
+import io.mykit.wechat.mp.beans.base.BaseBean;
 import io.mykit.wechat.utils.xml.XStreamCDataConverter;
 import lombok.Data;
-
-import java.io.Serializable;
+import lombok.EqualsAndHashCode;
 
 /**
  * @Author: liuyazhuang
@@ -14,7 +13,8 @@ import java.io.Serializable;
  * @Description: 微信基础XML
  */
 @Data
-public class WxBaseMessage implements Serializable {
+@EqualsAndHashCode(callSuper = false)
+public class WxBaseMessage extends BaseBean {
     private static final long serialVersionUID = -1512495051521057688L;
 
     @XStreamAlias("ToUserName")
@@ -25,7 +25,4 @@ public class WxBaseMessage implements Serializable {
     @XStreamConverter(value = XStreamCDataConverter.class)
     private String fromUserName;
 
-    public String toString(Object obj){
-        return JSONObject.toJSONString(obj);
-    }
 }
