@@ -135,9 +135,13 @@ public class BaseProp {
      */
     public static final String WEIXIN_MASS_SENDALL = "weixin.mass_sendall";
 
-
     /**
      * 根据OpenID群发
      */
     public static final String WEIXIN_MASS_SEND = "weixin.mass.send";
+
+    /**
+     * 删除群发消息
+     */
+    public static final String WEIXIN_MASS_DELETE = "weixin.mass.delete";
 }

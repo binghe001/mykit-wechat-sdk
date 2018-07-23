@@ -10,7 +10,7 @@ import io.mykit.wechat.mp.beans.json.mass.tag.text.WxMassTagTextMessage;
 import io.mykit.wechat.mp.beans.json.media.WxMediaUploadNews;
 import io.mykit.wechat.mp.beans.json.media.WxMediaUploadNewsItem;
 import io.mykit.wechat.mp.http.constants.WxConstants;
-import io.mykit.wechat.mp.http.media.WxMediaHandler;
+import io.mykit.wechat.mp.http.handler.media.WxMediaHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 

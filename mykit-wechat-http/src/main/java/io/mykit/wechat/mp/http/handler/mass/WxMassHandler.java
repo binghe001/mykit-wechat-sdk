@@ -1,4 +1,4 @@
-package io.mykit.wechat.mp.http.media;
+package io.mykit.wechat.mp.http.handler.mass;
 
 import io.mykit.wechat.mp.beans.json.mass.openid.image.WxMassOpenIdImageMessage;
 import io.mykit.wechat.mp.beans.json.mass.openid.news.WxMassOpenIdNewsMassage;
@@ -16,60 +16,16 @@ import io.mykit.wechat.mp.beans.json.mass.tag.wxcard.WxMassTagCardMessage;
 import io.mykit.wechat.mp.beans.json.media.WxMediaUploadNews;
 import io.mykit.wechat.mp.config.LoadProp;
 import io.mykit.wechat.mp.http.base.HttpConnectionUtils;
-import io.mykit.wechat.mp.http.constants.WxConstants;
 import io.mykit.wechat.mp.http.handler.base.BaseHandler;
-import io.mykit.wechat.mp.http.handler.token.AccessTokenHandler;
-import io.mykit.wechat.mp.http.wx.WxHttpConnectionUtils;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.File;
 
 /**
  * @Author: liuyazhuang
- * @Date: 2018/7/20 09:23
- * @Description: 微信多媒体处理类
+ * @Date: 2018/7/23 13:35
+ * @Description: 群发消息相关
  */
 @Slf4j
-public class WxMediaHandler extends BaseHandler {
-
-    /**
-     * 上传多媒体文件
-     * @param appid appid
-     * @param secret secret
-     * @param fileType 文件类型，支持image/voice/video/thumb
-     * @param filePath 文件在本地存储的绝对路径
-     * @return 返回结果，成功：{"create_at":123456,"media_id":"123","type":"image"}  失败返回{"errcode":12345, "errmsg":"errmsg"}
-     * @throws Exception
-     */
-     public static String uploadMediaFile(String appid, String secret, String fileType, String filePath) throws Exception{
-        String url = LoadProp.getValue(LoadProp.WEIXIN_BASE_UPLOAD) + "?" + WxConstants.ACCESS_TOKEN + "=" + AccessTokenHandler.getAccessToken(appid, secret) + "&type=" +fileType;
-        return WxHttpConnectionUtils.uploadFileToWeixinServer(url, filePath, WxHttpConnectionUtils.TYPE_MEDIA);
-     }
-    /**
-     * 上传多媒体文件
-     * @param appid appid
-     * @param secret secret
-     * @param fileType 文件类型，支持image/voice/video/thumb
-     * @param filePath 文件在本地存储的绝对路径
-     * @return 返回结果，成功：{"create_at":123456,"media_id":"123","type":"image"}  失败返回{"errcode":12345, "errmsg":"errmsg"}
-     * @throws Exception
-     */
-     public static String uploadMediaFile2(String appid, String secret, String fileType, String filePath) throws Exception{
-        String url = LoadProp.getValue(LoadProp.WEIXIN_BASE_UPLOAD_FILE) + "?" + WxConstants.ACCESS_TOKEN + "=" + AccessTokenHandler.getAccessToken(appid, secret) + "&type=" +fileType;
-        return WxHttpConnectionUtils.uploadFileToWeixinServer(url, filePath, WxHttpConnectionUtils.TYPE_MEDIA);
-     }
-
-    /**
-     * 下载多媒体文件
-     * @param filePath 存储到本地磁盘上的绝对路径
-     * @param mediaId 微信服务器上多媒体文件的id
-     * @return File对象
-     * @throws Exception
-     */
-     public static File downloadMediaFile(String appid, String secret, String filePath, String mediaId) throws Exception{
-        return WxHttpConnectionUtils.downloadMedia(LoadProp.getValue(LoadProp.WEIXIN_BASE_DOWNLOAD_FILE), filePath, AccessTokenHandler.getAccessToken(appid, secret), mediaId);
-     }
-
+public class WxMassHandler extends BaseHandler {
 
     /**
      * 上传图文消息素材
@@ -78,33 +34,33 @@ public class WxMediaHandler extends BaseHandler {
      * @param wxMediaUploadNews 封装的接口请求体
      *                          post数据格式如下：
      *                          {
-                             *     "articles": [
-                             *         {
-                             *             "thumb_media_id": "qI6_Ze_6PtV7svjolgs-rN6stStuHIjs9_DidOHaj0Q-mwvBelOXCFZiq2OsIU-p",
-                             *             "author": "xxx",
-                             *             "title": "Happy Day",
-                             *             "content_source_url": "www.qq.com",
-                             *             "content": "content",
-                             *             "digest": "digest",
-                             *             "show_cover_pic": 1
-                             *         },
-                             *         {
-                             *             "thumb_media_id": "qI6_Ze_6PtV7svjolgs-rN6stStuHIjs9_DidOHaj0Q-mwvBelOXCFZiq2OsIU-p",
-                             *             "author": "xxx",
-                             *             "title": "Happy Day",
-                             *             "content_source_url": "www.qq.com",
-                             *             "content": "content",
-                             *             "digest": "digest",
-                             *             "show_cover_pic": 0
-                             *         }
-                             *     ]
-                            * }
+     *     "articles": [
+     *         {
+     *             "thumb_media_id": "qI6_Ze_6PtV7svjolgs-rN6stStuHIjs9_DidOHaj0Q-mwvBelOXCFZiq2OsIU-p",
+     *             "author": "xxx",
+     *             "title": "Happy Day",
+     *             "content_source_url": "www.qq.com",
+     *             "content": "content",
+     *             "digest": "digest",
+     *             "show_cover_pic": 1
+     *         },
+     *         {
+     *             "thumb_media_id": "qI6_Ze_6PtV7svjolgs-rN6stStuHIjs9_DidOHaj0Q-mwvBelOXCFZiq2OsIU-p",
+     *             "author": "xxx",
+     *             "title": "Happy Day",
+     *             "content_source_url": "www.qq.com",
+     *             "content": "content",
+     *             "digest": "digest",
+     *             "show_cover_pic": 0
+     *         }
+     *     ]
+     * }
      * @return 成功：：{"create_at":123456,"media_id":"123","type":"image"}  失败返回:{"errcode":12345, "errmsg":"errmsg"}
      * @throws Exception
      */
-     public static String uploadMediaNewsFile(String appid, String secret, WxMediaUploadNews wxMediaUploadNews) throws Exception{
+    public static String uploadMediaNewsFile(String appid, String secret, WxMediaUploadNews wxMediaUploadNews) throws Exception{
         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MEDIA_NEWS_UPLOAD), wxMediaUploadNews.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
-     }
+    }
 
 
     /**
@@ -139,9 +95,9 @@ public class WxMediaHandler extends BaseHandler {
      * 错误时微信会返回错误码等信息，请根据错误码查询错误信息
      * @throws Exception
      */
-     public static String sendMpnewsMessageByTag(String appid, String secret, WxMassTagNewsMessage wxMassNewsMessage) throws Exception{
+    public static String sendMpnewsMessageByTag(String appid, String secret, WxMassTagNewsMessage wxMassNewsMessage) throws Exception{
         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SENDALL), wxMassNewsMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
-     }
+    }
 
     /**
      * 根据标签发送微信文本消息
@@ -174,9 +130,9 @@ public class WxMediaHandler extends BaseHandler {
      * 错误时微信会返回错误码等信息，请根据错误码查询错误信息
      * @throws Exception
      */
-     public static String sendTextMessageByTag(String appid, String secret, WxMassTagTextMessage wxMassTagTextMessage) throws Exception{
+    public static String sendTextMessageByTag(String appid, String secret, WxMassTagTextMessage wxMassTagTextMessage) throws Exception{
         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SENDALL), wxMassTagTextMessage.toString(),getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
-     }
+    }
     /**
      * 语音/音频（注意此处media_id需通过基础支持中的上传下载多媒体文件来得到）
      * @param appid appid
@@ -208,9 +164,9 @@ public class WxMediaHandler extends BaseHandler {
      * 错误时微信会返回错误码等信息，请根据错误码查询错误信息
      * @throws Exception
      */
-     public static String sendVoiceMessageByTag(String appid, String secret, WxMassTagVoiceMessage wxMassTagVoiceMessage) throws Exception{
-         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SENDALL), wxMassTagVoiceMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
-     }
+    public static String sendVoiceMessageByTag(String appid, String secret, WxMassTagVoiceMessage wxMassTagVoiceMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SENDALL), wxMassTagVoiceMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
 
     /**
      * 图片（注意此处media_id需通过基础支持中的上传下载多媒体文件来得到）
@@ -243,9 +199,9 @@ public class WxMediaHandler extends BaseHandler {
      * 错误时微信会返回错误码等信息，请根据错误码查询错误信息
      * @throws Exception
      */
-     public static String sendImageMessageByTag(String appid, String secret, WxMassTagImageMessage wxMassTagImageMessage) throws Exception{
-         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SENDALL), wxMassTagImageMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
-     }
+    public static String sendImageMessageByTag(String appid, String secret, WxMassTagImageMessage wxMassTagImageMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SENDALL), wxMassTagImageMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
 
     /**
      * 群发消息上传视频素材
@@ -265,9 +221,9 @@ public class WxMediaHandler extends BaseHandler {
      * }
      * @throws Exception
      */
-     public static String uploadMediaVideo(String appid, String appsecret, WxMassTagVideoUploadMessage wxMassVideoUploadMessage) throws Exception{
+    public static String uploadMediaVideo(String appid, String appsecret, WxMassTagVideoUploadMessage wxMassVideoUploadMessage) throws Exception{
         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MEDIA_VIDEO_UPLOAD), wxMassVideoUploadMessage.toString(), getAccessTokenNameValuePairs(appid, appsecret), null, HttpConnectionUtils.TYPE_STREAM);
-     }
+    }
 
 
     /**
@@ -301,9 +257,9 @@ public class WxMediaHandler extends BaseHandler {
      * 错误时微信会返回错误码等信息，请根据错误码查询错误信息
      * @throws Exception
      */
-     public static String sendVideoMessageByTag(String appid, String secret, WxMassTagVideoMessage wxMassTagVideoMessage) throws Exception{
-         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SENDALL), wxMassTagVideoMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
-     }
+    public static String sendVideoMessageByTag(String appid, String secret, WxMassTagVideoMessage wxMassTagVideoMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SENDALL), wxMassTagVideoMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
 
     /**
      * 卡券消息（注意图文消息的media_id需要通过上述方法来得到）
@@ -336,9 +292,9 @@ public class WxMediaHandler extends BaseHandler {
      * 错误时微信会返回错误码等信息，请根据错误码查询错误信息
      * @throws Exception
      */
-     public static String sendWxcardMessageByTag(String appid, String secret, WxMassTagCardMessage wxMassTagCardMessage) throws Exception{
-         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SENDALL), wxMassTagCardMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
-     }
+    public static String sendWxcardMessageByTag(String appid, String secret, WxMassTagCardMessage wxMassTagCardMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SENDALL), wxMassTagCardMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
 
     /**
      * 根据openId群发图文消息
@@ -378,9 +334,9 @@ public class WxMediaHandler extends BaseHandler {
      *{"errcode": 状态码, "errmsg":"状态信息"}
      * @throws Exception
      */
-     public static String sendWxNewsMessageByOpenId(String appid, String secret, WxMassOpenIdNewsMassage wxMassOpenIdNewsMassage) throws Exception{
-         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SEND), wxMassOpenIdNewsMassage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
-     }
+    public static String sendWxNewsMessageByOpenId(String appid, String secret, WxMassOpenIdNewsMassage wxMassOpenIdNewsMassage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SEND), wxMassOpenIdNewsMassage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
 
     /**
      * 根据openId群发文本消息
@@ -417,9 +373,9 @@ public class WxMediaHandler extends BaseHandler {
      *{"errcode": 状态码, "errmsg":"状态信息"}
      * @throws Exception
      */
-     public static String sendWxTextMessageByOpenId(String appid, String secret, WxMassOpenIdTextMessage wxMassOpenIdTextMessage) throws Exception{
-         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SEND), wxMassOpenIdTextMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
-     }
+    public static String sendWxTextMessageByOpenId(String appid, String secret, WxMassOpenIdTextMessage wxMassOpenIdTextMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SEND), wxMassOpenIdTextMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
 
 
     /**
@@ -583,6 +539,4 @@ public class WxMediaHandler extends BaseHandler {
     public static String sendWxCardMessageByOpenId(String appid, String secret, WxMassOpenIdCardMessage wxMassOpenIdCardMessage) throws Exception{
         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SEND), wxMassOpenIdCardMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
     }
-
-
 }
