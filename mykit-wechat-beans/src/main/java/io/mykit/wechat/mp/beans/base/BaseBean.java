@@ -26,4 +26,12 @@ public abstract class BaseBean implements Serializable {
         return XStreamHandler.toXml(obj);
     }
 
+    public String toJsonString(){
+        return toJsonString(this);
+    }
+
+    public String toXmlString(){
+        return toXmlString(this);
+    }
+
 }

@@ -154,4 +154,13 @@ public class BaseProp {
      * 查询群发消息发送状态
      */
     public static final String WEIXIN_MASS_GET = "wexin.mass.get";
+
+    /**
+     * 获取群发速度
+     */
+    public static final String WEIXIN_MASS_SPEED_GET = "weixin.mass.speed.get";
+    /**
+     * 设置群发速度
+     */
+    public static final String WEIXIN_MASS_SPEED_SET = "weixin.mass.speed.set";
 }

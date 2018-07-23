@@ -15,6 +15,7 @@ import io.mykit.wechat.mp.beans.json.mass.preview.text.WxMassPreviewTextMessage;
 import io.mykit.wechat.mp.beans.json.mass.preview.video.WxMassPreviewVideoMessage;
 import io.mykit.wechat.mp.beans.json.mass.preview.voice.WxMassPreviewVoiceMessage;
 import io.mykit.wechat.mp.beans.json.mass.preview.wxcard.WxMassPreviewCardMessage;
+import io.mykit.wechat.mp.beans.json.mass.speed.WxMassSpeed;
 import io.mykit.wechat.mp.beans.json.mass.tag.image.WxMassTagImageMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.news.WxMassTagNewsMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.text.WxMassTagTextMessage;
@@ -771,6 +772,26 @@ public class WxMassHandler extends BaseHandler {
     }
 
 
+    /**
+     * 获取群发速度
+     * @param appid appid
+     * @param secret secret
+     * @return
+     * {
+     *     "speed":3,
+     *     "realspeed":15
+     * }
+     * 参数	        是否必须	说明
+     * speed	    是	    群发速度的级别
+     * realspeed	是	    群发速度的真实值 单位：万/分钟
+     * @throws Exception
+     */
+    public static String getMassSpeed(String appid, String secret) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SPEED_GET), null, getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
 
+    public static String setMassSpeed(String appid, String secret, WxMassSpeed wxMassSpeed) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SPEED_SET), wxMassSpeed.toJsonString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
 
 }

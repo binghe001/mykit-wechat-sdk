@@ -276,6 +276,9 @@ public class HttpConnectionUtils extends BaseConnectionUtils {
                 postMethod.setRequestHeader(entry.getKey(), entry.getValue());
             }
         }
+        if(json == null){
+        	json = "";
+		}
 		if(ObjectUtils.isEmpty(nameValuePairs)){
 			nameValuePairs = new NameValuePair[]{};
 		}
