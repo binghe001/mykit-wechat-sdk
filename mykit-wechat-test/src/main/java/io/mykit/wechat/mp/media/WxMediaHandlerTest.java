@@ -10,6 +10,7 @@ import io.mykit.wechat.mp.beans.json.mass.tag.text.WxMassTagTextMessage;
 import io.mykit.wechat.mp.beans.json.media.WxMediaUploadNews;
 import io.mykit.wechat.mp.beans.json.media.WxMediaUploadNewsItem;
 import io.mykit.wechat.mp.http.constants.WxConstants;
+import io.mykit.wechat.mp.http.handler.mass.WxMassHandler;
 import io.mykit.wechat.mp.http.handler.media.WxMediaHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -55,7 +56,7 @@ public class WxMediaHandlerTest extends BaseTest {
         List<WxMediaUploadNewsItem> list = new ArrayList<>();
         list.add(wxMediaUploadNewsItem);
         wxMediaUploadNews.setArticles(list);
-        log.info(WxMediaHandler.uploadMediaNewsFile(APPID, APPSECRET, wxMediaUploadNews));
+        log.info(WxMassHandler.uploadMediaNewsFile(APPID, APPSECRET, wxMediaUploadNews));
     }
 
     @Test
@@ -72,7 +73,7 @@ public class WxMediaHandlerTest extends BaseTest {
         wxMassNewsMessage.setMsgtype(WxConstants.TYPE_IMAGE);
         wxMassNewsMessage.setSend_ignore_reprint(1);
 
-        log.info(WxMediaHandler.sendMpnewsMessageByTag(APPID, APPSECRET, wxMassNewsMessage));
+        log.info(WxMassHandler.sendMpnewsMessageByTag(APPID, APPSECRET, wxMassNewsMessage));
     }
 
 
@@ -89,7 +90,7 @@ public class WxMediaHandlerTest extends BaseTest {
         wxMassTagTextMessage.setMsgtype("text");
         wxMassTagTextMessage.setText(textContent);
 
-        log.info(WxMediaHandler.sendTextMessageByTag(APPID, APPSECRET, wxMassTagTextMessage));
+        log.info(WxMassHandler.sendTextMessageByTag(APPID, APPSECRET, wxMassTagTextMessage));
     }
 
     @Test
@@ -106,7 +107,7 @@ public class WxMediaHandlerTest extends BaseTest {
         wxMassTagImageMessage.setMsgtype("image");
 
         log.info(wxMassTagImageMessage.toString());
-        log.info(WxMediaHandler.sendImageMessageByTag(APPID, APPSECRET, wxMassTagImageMessage));
+        log.info(WxMassHandler.sendImageMessageByTag(APPID, APPSECRET, wxMassTagImageMessage));
     }
 
     @Test

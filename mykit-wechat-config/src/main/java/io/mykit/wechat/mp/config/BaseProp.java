@@ -144,4 +144,14 @@ public class BaseProp {
      * 删除群发消息
      */
     public static final String WEIXIN_MASS_DELETE = "weixin.mass.delete";
+
+    /**
+     * 预览群发
+     */
+    public static final String WEIXIN_MASS_PREVIEW = "weixin.mass.preview";
+
+    /**
+     * 查询群发消息发送状态
+     */
+    public static final String WEIXIN_MASS_GET = "wexin.mass.get";
 }

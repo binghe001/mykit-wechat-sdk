@@ -1,5 +1,8 @@
 package io.mykit.wechat.bean.xml.test;
 
+import io.mykit.wechat.mp.beans.xml.receive.event.mass.WxMassCopyrightCheckResult;
+import io.mykit.wechat.mp.beans.xml.receive.event.mass.WxMassEventMessage;
+import io.mykit.wechat.mp.beans.xml.receive.event.mass.WxMassResultListItem;
 import io.mykit.wechat.mp.beans.xml.receive.event.menu.WxMenuPicSysPhotoInfoMessage;
 import io.mykit.wechat.mp.beans.xml.receive.event.menu.WxMenuPicSysPhotoItemMessage;
 import io.mykit.wechat.mp.beans.xml.receive.event.menu.WxMenuPicSysPhotoMessage;
@@ -7,6 +10,7 @@ import io.mykit.wechat.mp.beans.xml.receive.voice.WxReceiveVoiceMessage;
 import io.mykit.wechat.mp.beans.xml.send.news.WxSendNewsItemMessage;
 import io.mykit.wechat.mp.beans.xml.send.news.WxSendNewsMessage;
 import io.mykit.wechat.utils.crypt.wrapper.WxBizMsgCryptWrapper;
+import io.mykit.wechat.utils.json.JsonUtils;
 import io.mykit.wechat.utils.xml.handler.XStreamHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -135,4 +139,90 @@ public class BeansParserTest {
 
         log.info(String.valueOf(str.equals(deStr)));
     }
+
+    @Test
+    public void testWxMassEventMessage(){
+        WxMassResultListItem wxMassResultListItem = new WxMassResultListItem();
+        wxMassResultListItem.setArticleIdx(1);
+        wxMassResultListItem.setAuditState(1);
+        wxMassResultListItem.setCanReprint(1);
+        wxMassResultListItem.setNeedReplaceContent(1);
+        wxMassResultListItem.setNeedShowReprintSource(1);
+        wxMassResultListItem.setOriginalArticleType(1);
+        wxMassResultListItem.setOriginalArticleUrl("http://www.baidu.com");
+        wxMassResultListItem.setUserDeclareState(1);
+
+        List<WxMassResultListItem> resultList = new ArrayList<>();
+        resultList.add(wxMassResultListItem);
+        resultList.add(wxMassResultListItem);
+
+        WxMassCopyrightCheckResult wxMassCopyrightCheckResult = new WxMassCopyrightCheckResult();
+        wxMassCopyrightCheckResult.setCheckState(2);
+        wxMassCopyrightCheckResult.setCount(2);
+        wxMassCopyrightCheckResult.setResultList(resultList);
+
+        WxMassEventMessage wxMassEventMessage = new WxMassEventMessage();
+        wxMassEventMessage.setCopyrightCheckResult(wxMassCopyrightCheckResult);
+        wxMassEventMessage.setErrorCount(0);
+        wxMassEventMessage.setFilterCount(2);
+        wxMassEventMessage.setMsgId(123L);
+        wxMassEventMessage.setSentCount(2);
+        wxMassEventMessage.setStatus("success");
+        wxMassEventMessage.setCreateTime(System.currentTimeMillis() /1000);
+        wxMassEventMessage.setEvent("event");
+        wxMassEventMessage.setFromUserName("fromUser");
+        wxMassEventMessage.setMsgType("msgType");
+        wxMassEventMessage.setToUserName("toUser");
+        wxMassEventMessage.setTotalCount(2);
+
+        log.info(wxMassEventMessage.toXmlString());
+    }
+
+    @Test
+    public void testXml2WxMassEventMessage(){
+        String xml = "<xml>" +
+                "<ToUserName><![CDATA[gh_4d00ed8d6399]]></ToUserName>" +
+                "<FromUserName><![CDATA[oV5CrjpxgaGXNHIQigzNlgLTnwic]]></FromUserName>" +
+                "<CreateTime>1481013459</CreateTime>" +
+                "<MsgType><![CDATA[event]]></MsgType>" +
+                "<Event><![CDATA[MASSSENDJOBFINISH]]></Event>" +
+                "<MsgID>1000001625</MsgID>" +
+                "<Status><![CDATA[err(30003)]]></Status>" +
+                "<TotalCount>0</TotalCount>" +
+                "<FilterCount>0</FilterCount>" +
+                "<SentCount>0</SentCount>" +
+                "<ErrorCount>0</ErrorCount>" +
+                "<CopyrightCheckResult>" +
+                "<Count>2</Count>" +
+                "<ResultList>" +
+                "<item>" +
+                "<ArticleIdx>1</ArticleIdx>" +
+                "<UserDeclareState>0</UserDeclareState>" +
+                "<AuditState>2</AuditState>" +
+                "<OriginalArticleUrl><![CDATA[Url_1]]></OriginalArticleUrl>" +
+                "<OriginalArticleType>1</OriginalArticleType>" +
+                "<CanReprint>1</CanReprint>" +
+                "<NeedReplaceContent>1</NeedReplaceContent>" +
+                "<NeedShowReprintSource>1</NeedShowReprintSource>" +
+                "</item>" +
+                "<item>" +
+                "<ArticleIdx>2</ArticleIdx>" +
+                "<UserDeclareState>0</UserDeclareState>" +
+                "<AuditState>2</AuditState>" +
+                "<OriginalArticleUrl><![CDATA[Url_2]]></OriginalArticleUrl>" +
+                "<OriginalArticleType>1</OriginalArticleType>" +
+                "<CanReprint>1</CanReprint>" +
+                "<NeedReplaceContent>1</NeedReplaceContent>" +
+                "<NeedShowReprintSource>1</NeedShowReprintSource>" +
+                "</item>" +
+                "</ResultList>" +
+                "<CheckState>2</CheckState>" +
+                "</CopyrightCheckResult>" +
+                "</xml>";
+
+        WxMassEventMessage wxMassEventMessage = XStreamHandler.toBean(xml, WxMassEventMessage.class);
+        System.out.println(JsonUtils.bean2Json(wxMassEventMessage));
+
+    }
+
 }

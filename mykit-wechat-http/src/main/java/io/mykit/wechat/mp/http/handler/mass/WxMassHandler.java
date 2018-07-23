@@ -1,11 +1,20 @@
 package io.mykit.wechat.mp.http.handler.mass;
 
+import io.mykit.wechat.mp.beans.json.code.WxCode;
+import io.mykit.wechat.mp.beans.json.mass.delete.WxMassDeleteMessage;
+import io.mykit.wechat.mp.beans.json.mass.get.WxMassGetMessage;
 import io.mykit.wechat.mp.beans.json.mass.openid.image.WxMassOpenIdImageMessage;
 import io.mykit.wechat.mp.beans.json.mass.openid.news.WxMassOpenIdNewsMassage;
 import io.mykit.wechat.mp.beans.json.mass.openid.text.WxMassOpenIdTextMessage;
 import io.mykit.wechat.mp.beans.json.mass.openid.video.WxMassOpenIdVideoMessage;
 import io.mykit.wechat.mp.beans.json.mass.openid.voice.WxMassOpenIdVoiceMessage;
 import io.mykit.wechat.mp.beans.json.mass.openid.wxcard.WxMassOpenIdCardMessage;
+import io.mykit.wechat.mp.beans.json.mass.preview.image.WxMassPreviewImageMessage;
+import io.mykit.wechat.mp.beans.json.mass.preview.news.WxMassPreviewNewsMessage;
+import io.mykit.wechat.mp.beans.json.mass.preview.text.WxMassPreviewTextMessage;
+import io.mykit.wechat.mp.beans.json.mass.preview.video.WxMassPreviewVideoMessage;
+import io.mykit.wechat.mp.beans.json.mass.preview.voice.WxMassPreviewVoiceMessage;
+import io.mykit.wechat.mp.beans.json.mass.preview.wxcard.WxMassPreviewCardMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.image.WxMassTagImageMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.news.WxMassTagNewsMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.text.WxMassTagTextMessage;
@@ -17,12 +26,14 @@ import io.mykit.wechat.mp.beans.json.media.WxMediaUploadNews;
 import io.mykit.wechat.mp.config.LoadProp;
 import io.mykit.wechat.mp.http.base.HttpConnectionUtils;
 import io.mykit.wechat.mp.http.handler.base.BaseHandler;
+import io.mykit.wechat.utils.exception.WxHttpException;
+import io.mykit.wechat.utils.json.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * @Author: liuyazhuang
  * @Date: 2018/7/23 13:35
- * @Description: 群发消息相关
+ * @Description: 群发消息处理类
  */
 @Slf4j
 public class WxMassHandler extends BaseHandler {
@@ -539,4 +550,227 @@ public class WxMassHandler extends BaseHandler {
     public static String sendWxCardMessageByOpenId(String appid, String secret, WxMassOpenIdCardMessage wxMassOpenIdCardMessage) throws Exception{
         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SEND), wxMassOpenIdCardMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
     }
+
+    /**
+     * 删除群发消息
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassDeleteMessage 封装的删除群发消息请求体
+     * 格式如下：
+     * {
+     *    "msg_id":30124,
+     *    "article_idx":2
+     * }
+     * @return
+     * {
+     *    "errcode":0,
+     *    "errmsg":"ok"
+     * }
+     * @throws Exception
+     */
+    public static WxCode deleteMassMessage(String appid, String secret, WxMassDeleteMessage wxMassDeleteMessage) throws Exception{
+        String ret = HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_DELETE), wxMassDeleteMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+        return JsonUtils.json2Bean(ret, WxCode.class);
+    }
+
+    /**
+     * 预览图文消息
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassPreviewNewsMessage 封装的请求体
+     * 格式如下：
+     * {
+     *    "touser":"OPENID",
+     *    "mpnews":{
+     *             "media_id":"123dsdajkasd231jhksad"
+     *              },
+     *    "msgtype":"mpnews"
+     * }
+     * @return
+     * {
+     *    "errcode":0,
+     *    "errmsg":"preview success",
+     *    "msg_id":34182
+     * }
+     * 参数	     说明
+     * errcode	错误码
+     * errmsg	错误信息
+     * msg_id	消息ID
+     * @throws Exception
+     */
+    public static String previewMassNewsMessage(String appid, String secret, WxMassPreviewNewsMessage wxMassPreviewNewsMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_PREVIEW), wxMassPreviewNewsMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
+
+
+    /**
+     * 预览文本消息
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassPreviewTextMessage 封装的请求体
+     * 格式如下：
+     * {
+     *     "touser":"OPENID",
+     *     "text":{
+     *            "content":"CONTENT"
+     *            },
+     *     "msgtype":"text"
+     * }
+     * @return
+     * {
+     *    "errcode":0,
+     *    "errmsg":"preview success",
+     *    "msg_id":34182
+     * }
+     * 参数	     说明
+     * errcode	错误码
+     * errmsg	错误信息
+     * msg_id	消息ID
+     * @throws Exception
+     */
+    public static String previewMassTextMessage(String appid, String secret, WxMassPreviewTextMessage wxMassPreviewTextMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_PREVIEW), wxMassPreviewTextMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
+
+
+    /**
+     * 预览语音消息
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassPreviewVoiceMessage 封装的请求体
+     * 格式如下：
+     * {
+     *     "touser":"OPENID",
+     *     "voice":{
+     *             "media_id":"123dsdajkasd231jhksad"
+     *             },
+     *     "msgtype":"voice"
+     * }
+     * @return
+     * {
+     *    "errcode":0,
+     *    "errmsg":"preview success",
+     *    "msg_id":34182
+     * }
+     * 参数	     说明
+     * errcode	错误码
+     * errmsg	错误信息
+     * msg_id	消息ID
+     * @throws Exception
+     */
+    public static String previewMassVoiceMessage(String appid, String secret, WxMassPreviewVoiceMessage wxMassPreviewVoiceMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_PREVIEW), wxMassPreviewVoiceMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
+    /**
+     * 预览图片消息
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassPreviewImageMessage 封装的请求体
+     * 格式如下：
+     * {
+     *     "touser":"OPENID",
+     *     "image":{
+     *             "media_id":"123dsdajkasd231jhksad"
+     *             },
+     *     "msgtype":"image"
+     * }
+     * @return
+     * {
+     *    "errcode":0,
+     *    "errmsg":"preview success",
+     *    "msg_id":34182
+     * }
+     * 参数	     说明
+     * errcode	错误码
+     * errmsg	错误信息
+     * msg_id	消息ID
+     * @throws Exception
+     */
+    public static String previewMassImageMessage(String appid, String secret, WxMassPreviewImageMessage wxMassPreviewImageMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_PREVIEW), wxMassPreviewImageMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
+
+    /**
+     * 预览视频消息
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassPreviewVideoMessage 封装的请求体
+     * 格式如下：
+     * {
+     *     "touser":"OPENID",
+     *     "mpvideo":{  "media_id":"IhdaAQXuvJtGzwwc0abfXnzeezfO0NgPK6AQYShD8RQYMTtfzbLdBIQkQziv2XJc",
+     *                },
+     *     "msgtype":"mpvideo"
+     * }
+     * @return
+     * {
+     *    "errcode":0,
+     *    "errmsg":"preview success",
+     *    "msg_id":34182
+     * }
+     * 参数	     说明
+     * errcode	错误码
+     * errmsg	错误信息
+     * msg_id	消息ID
+     * @throws Exception
+     */
+    public static String previewMassVideoMessage(String appid, String secret, WxMassPreviewVideoMessage wxMassPreviewVideoMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_PREVIEW), wxMassPreviewVideoMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
+
+    /**
+     * 预览卡券消息
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassPreviewCardMessage 封装的请求体
+     * 格式如下：
+     * { "touser":"OPENID",
+     *   "wxcard":{
+     *            "card_id":"123dsdajkasd231jhksad",
+     *             "card_ext": "{"code":"","openid":"","timestamp":"1402057159","signature":"017bb17407c8e0058a66d72dcc61632b70f511ad"}"
+     *             },
+     *   "msgtype":"wxcard"
+     * }
+     * @return
+     * {
+     *    "errcode":0,
+     *    "errmsg":"preview success",
+     *    "msg_id":34182
+     * }
+     * 参数	     说明
+     * errcode	错误码
+     * errmsg	错误信息
+     * msg_id	消息ID
+     * @throws Exception
+     */
+    public static String previewMassCardMessage(String appid, String secret, WxMassPreviewCardMessage wxMassPreviewCardMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_PREVIEW), wxMassPreviewCardMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
+
+    /**
+     * 查询群发消息发送状态
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassGetMessage 消息体
+     * 格式如下：
+     * {
+     *    "msg_id": "201053012"
+     * }
+     * @return
+     * 正确时：
+     * {
+     *      "msg_id":201053012,
+     *      "msg_status":"SEND_SUCCESS"
+     * }
+     * msg_id	群发消息后返回的消息id
+     * msg_status	消息发送后的状态，SEND_SUCCESS表示发送成功，SENDING表示发送中，SEND_FAIL表示发送失败，DELETE表示已删除
+     * @throws Exception
+     */
+    public static String getMassMessage(String appid, String secret, WxMassGetMessage wxMassGetMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_GET), wxMassGetMessage.toString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
+
+
+
+
 }
