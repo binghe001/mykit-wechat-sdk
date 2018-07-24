@@ -27,7 +27,6 @@ import io.mykit.wechat.mp.beans.json.media.WxMediaUploadNews;
 import io.mykit.wechat.mp.config.LoadProp;
 import io.mykit.wechat.mp.http.base.HttpConnectionUtils;
 import io.mykit.wechat.mp.http.handler.base.BaseHandler;
-import io.mykit.wechat.utils.exception.WxHttpException;
 import io.mykit.wechat.utils.json.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -790,6 +789,23 @@ public class WxMassHandler extends BaseHandler {
         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SPEED_GET), null, getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
     }
 
+    /**
+     * 设置群发消息速度
+     * @param appid appid
+     * @param secret secret
+     * @param wxMassSpeed  wxMassSpeed
+     * 格式如下：
+     *  {
+     *     "speed":1
+     * }
+     * @return
+     * {
+     *    "errcode":状态码,
+     *    "errmsg":"状态信息"
+     *  }
+     *
+     * @throws Exception
+     */
     public static String setMassSpeed(String appid, String secret, WxMassSpeed wxMassSpeed) throws Exception{
         return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MASS_SPEED_SET), wxMassSpeed.toJsonString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
     }
