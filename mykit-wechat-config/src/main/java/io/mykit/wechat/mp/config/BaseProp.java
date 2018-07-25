@@ -206,4 +206,21 @@ public class BaseProp {
      * 获取公众号的自动回复规则
      */
     public static final String WEXIN_AUTOREPLY_INFO = "weixin.autoreply.info";
+
+    /**
+     * 通过code换取网页授权access_token
+     */
+    public static final String WEXIN_OAUTH2_TOKEN = "weixin.oauth2.token";
+    /**
+     * 刷新access_token
+     */
+    public static final String WEXIN_OAUTH2_REFRESH = "weixin.oauth2.refresh";
+    /**
+     * 拉取用户信息
+     */
+    public static final String WEXIN_OAUTH2_USER_GET = "weixin.oauth2.user.get";
+    /**
+     * 检验授权凭证（access_token）是否有效
+     */
+    public static final String WEXIN_OAUTH2_TOKEN_AUTH= "weixin.oauth2.token.auth";
 }

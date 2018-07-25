@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AccessTokenHandler {
 
+    private static final String WX_BASE = "base";
     /**
      * 查看本地是否存在AccessToken,本地存在则直接取缓存中的数据，本地不存在，则直接通过网络获取
      * @param appid appid
@@ -23,7 +24,7 @@ public class AccessTokenHandler {
      * @return 返回从微信获取的access_token
      */
     public static String getAccessToken(String appid, String secret) throws Exception{
-        String key = appid.concat(secret);
+        String key = WX_BASE.concat(appid).concat(secret);
         //从缓存获取access_token
         String access_token = RedisUtils.getValueFromRedis(key);
         //缓存中没有，则从网络直接获取后放入缓存7200s

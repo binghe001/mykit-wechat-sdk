@@ -23,13 +23,13 @@ public class BaseHandler {
      * @param map 其他需要放到连接上的参数的可变map集合
      * @return NameValuePair数组
      */
-    protected static NameValuePair[] getAccessTokenNameValuePairs(String appid, String secret, Map<String, String> map) throws Exception{
+    protected static NameValuePair[] getAccessTokenNameValuePairs(String appid, String secret, Map<String, Object> map) throws Exception{
         String access_token = AccessTokenHandler.getAccessToken(appid, secret);
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new NameValuePair(WxConstants.ACCESS_TOKEN, access_token));
         if(map != null && map.size() > 0){
-            for(Map.Entry<String, String> entry : map.entrySet()){
-                nameValuePairs.add(new NameValuePair(entry.getKey(), entry.getValue()));
+            for(Map.Entry<String, Object> entry : map.entrySet()){
+                nameValuePairs.add(new NameValuePair(entry.getKey(), entry.getValue().toString()));
             }
         }
         return nameValuePairs.toArray(new NameValuePair[nameValuePairs.size()]);
@@ -42,5 +42,21 @@ public class BaseHandler {
      */
     protected static NameValuePair[] getAccessTokenNameValuePairs(String appid, String secret) throws Exception{
         return getAccessTokenNameValuePairs(appid, secret, null);
+    }
+
+    /**
+     * 获取封装的access_token的NameValuePair数组
+     * @param map map对象
+     * @return NameValuePair数组
+     * @throws Exception
+     */
+    protected static NameValuePair[] getAccessTokenNameValuePairs(Map<String, Object> map) throws Exception{
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        if(map != null && map.size() > 0){
+            for(Map.Entry<String, Object> entry : map.entrySet()){
+                nameValuePairs.add(new NameValuePair(entry.getKey(), entry.getValue().toString()));
+            }
+        }
+        return nameValuePairs.toArray(new NameValuePair[nameValuePairs.size()]);
     }
 }
