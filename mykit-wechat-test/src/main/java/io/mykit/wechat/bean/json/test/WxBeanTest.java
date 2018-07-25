@@ -9,7 +9,10 @@ import io.mykit.wechat.mp.beans.json.mass.preview.news.WxMassPreviewNewsMessage;
 import io.mykit.wechat.mp.beans.json.mass.preview.wxcard.WxMassPreviewCardInfo;
 import io.mykit.wechat.mp.beans.json.mass.preview.wxcard.WxMassPreviewCardInfoExt;
 import io.mykit.wechat.mp.beans.json.mass.preview.wxcard.WxMassPreviewCardMessage;
+import io.mykit.wechat.mp.beans.xml.receive.event.template.WxTemplateEventMessage;
+import io.mykit.wechat.utils.xml.handler.XStreamHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -91,5 +94,25 @@ public class WxBeanTest {
         log.info(wxMassPreviewCardMessage.toString());
 
 
+    }
+
+    @Test
+    public void testXml2WxTemplateEventMessage(){
+        String str = "<xml>" +
+                "<ToUserName><![CDATA[gh_7f083739789a]]></ToUserName>" +
+                "<FromUserName><![CDATA[oia2TjuEGTNoeX76QEjQNrcURxG8]]></FromUserName>" +
+                "<CreateTime>1395658920</CreateTime>" +
+                "<MsgType><![CDATA[event]]></MsgType>" +
+                "<Event><![CDATA[TEMPLATESENDJOBFINISH]]></Event>" +
+                "<MsgID>200163836</MsgID>" +
+                "<Status><![CDATA[success]]></Status>" +
+                "</xml>";
+        log.info(str);
+        WxTemplateEventMessage wxTemplateEventMessage = XStreamHandler.toBean(str, WxTemplateEventMessage.class);
+        log.info(wxTemplateEventMessage.toJsonString());
+        String msg = XStreamHandler.toXml(wxTemplateEventMessage);
+        log.info(msg);
+        log.info(String.valueOf(str.equals(msg)));
+        Assert.assertEquals(str, msg);
     }
 }

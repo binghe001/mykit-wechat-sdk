@@ -163,4 +163,33 @@ public class BaseProp {
      * 设置群发速度
      */
     public static final String WEIXIN_MASS_SPEED_SET = "weixin.mass.speed.set";
+
+    /**
+     * 设置所属行业
+     */
+    public static final String WEIXIN_TEMPLATE_INDUSTRY_SET = "weixin.template.industry.set";
+
+    /**
+     * 获取所属行业
+     */
+    public static final String WEIXIN_TEMPLATE_INDUSTRY_GET = "weixin.template.industry.get";
+
+    /**
+     * 获得模板ID
+     */
+    public static final String WEIXIN_TEMPLATE_ID_GET = "weixin.template.id.get";
+
+    /**
+     * 获取模板列表
+     */
+    public static final String WEIXIN_TEMPLATE_ALL_GET = "weixin.template.all.get";
+
+    /**
+     * 删除模板
+     */
+    public static final String WEIXIN_TEMPLATE_ID_DELETE = "weixin.temmplate.id.delete";
+    /**
+     * 发送模板消息
+     */
+    public static final String WEIXIN_TEMPLATE_SEND = "weixin.template.send";
 }
