@@ -1,4 +1,4 @@
-package io.mykit.wechat.mp.beans.json.template.send;
+package io.mykit.wechat.mp.beans.json.template;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

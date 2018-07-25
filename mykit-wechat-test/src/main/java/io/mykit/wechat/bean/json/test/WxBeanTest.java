@@ -9,6 +9,10 @@ import io.mykit.wechat.mp.beans.json.mass.preview.news.WxMassPreviewNewsMessage;
 import io.mykit.wechat.mp.beans.json.mass.preview.wxcard.WxMassPreviewCardInfo;
 import io.mykit.wechat.mp.beans.json.mass.preview.wxcard.WxMassPreviewCardInfoExt;
 import io.mykit.wechat.mp.beans.json.mass.preview.wxcard.WxMassPreviewCardMessage;
+import io.mykit.wechat.mp.beans.json.template.WxTemplateDataItemSend;
+import io.mykit.wechat.mp.beans.json.template.WxTemplateMiniprogramSend;
+import io.mykit.wechat.mp.beans.json.template.subscribe.WxTemplateContentSubscribe;
+import io.mykit.wechat.mp.beans.json.template.subscribe.WxTemplateSubscribe;
 import io.mykit.wechat.mp.beans.xml.receive.event.template.WxTemplateEventMessage;
 import io.mykit.wechat.utils.xml.handler.XStreamHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -114,5 +118,21 @@ public class WxBeanTest {
         log.info(msg);
         log.info(String.valueOf(str.equals(msg)));
         Assert.assertEquals(str, msg);
+    }
+
+    @Test
+    public void testWxTemplateSubacribe(){
+        WxTemplateContentSubscribe wxTemplateContentSubacribe = new WxTemplateContentSubscribe(new WxTemplateDataItemSend("你好", "#777777"));
+        WxTemplateMiniprogramSend wxTemplateMiniprogramSend = new WxTemplateMiniprogramSend("test", "test");
+        WxTemplateSubscribe wxTemplateSubacribe = new WxTemplateSubscribe();
+        wxTemplateSubacribe.setData(wxTemplateContentSubacribe);
+        wxTemplateSubacribe.setMiniprogram(wxTemplateMiniprogramSend);
+        wxTemplateSubacribe.setScene("sence");
+        wxTemplateSubacribe.setTemplate_id("template_id");
+        wxTemplateSubacribe.setTitle("title");
+        wxTemplateSubacribe.setTouser("toUser");
+        wxTemplateSubacribe.setUrl("http://www.baidu.com");
+
+        log.info(wxTemplateSubacribe.toJsonString());
     }
 }

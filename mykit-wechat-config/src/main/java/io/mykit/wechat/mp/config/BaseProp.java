@@ -192,4 +192,9 @@ public class BaseProp {
      * 发送模板消息
      */
     public static final String WEIXIN_TEMPLATE_SEND = "weixin.template.send";
+
+    /**
+     * 一次性订阅消息,通过API推送订阅模板消息给到授权微信用户
+     */
+    public static final String WEIXIN_TEMPLATE_SUBSCRIBE = "weixin.template.subscribe";
 }

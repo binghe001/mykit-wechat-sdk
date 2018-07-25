@@ -2,11 +2,10 @@ package io.mykit.wechat.mp.template;
 
 import io.mykit.wechat.mp.base.BaseTest;
 import io.mykit.wechat.mp.beans.json.template.industry.WxTemplateIndustry;
-import io.mykit.wechat.mp.beans.json.template.send.WxTemplateDataItemSend;
+import io.mykit.wechat.mp.beans.json.template.WxTemplateDataItemSend;
 import io.mykit.wechat.mp.beans.json.template.send.WxTemplateDataSend;
-import io.mykit.wechat.mp.beans.json.template.send.WxTemplateMiniprogramSend;
 import io.mykit.wechat.mp.beans.json.template.send.WxTemplateSend;
-import io.mykit.wechat.mp.http.handler.template.WxTemplateHandler;
+import io.mykit.wechat.mp.http.handler.template.send.WxTemplateSendHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -20,7 +19,7 @@ public class WxTemplateHandlerTest extends BaseTest {
 
     @Test
     public void testGetIndustry() throws Exception{
-        log.info(WxTemplateHandler.getIndustry(APPID, APPSECRET));
+        log.info(WxTemplateSendHandler.getIndustry(APPID, APPSECRET));
     }
 
     @Test
@@ -28,12 +27,12 @@ public class WxTemplateHandlerTest extends BaseTest {
         WxTemplateIndustry wxIndustry = new WxTemplateIndustry();
         wxIndustry.setIndustry_id1("2");
         wxIndustry.setIndustry_id2("41");
-        log.info(WxTemplateHandler.setIndustry(APPID, APPSECRET, wxIndustry));
+        log.info(WxTemplateSendHandler.setIndustry(APPID, APPSECRET, wxIndustry));
     }
 
     @Test
     public void testAllTemplate() throws Exception{
-        log.info(WxTemplateHandler.allTemplate(APPID, APPSECRET));
+        log.info(WxTemplateSendHandler.allTemplate(APPID, APPSECRET));
     }
 
     @Test
@@ -58,6 +57,6 @@ public class WxTemplateHandlerTest extends BaseTest {
 
         log.info(wxTemplateSend.toJsonString());
 
-        log.info(WxTemplateHandler.sendTemplate(APPID, APPSECRET, wxTemplateSend));
+        log.info(WxTemplateSendHandler.sendTemplate(APPID, APPSECRET, wxTemplateSend));
     }
 }

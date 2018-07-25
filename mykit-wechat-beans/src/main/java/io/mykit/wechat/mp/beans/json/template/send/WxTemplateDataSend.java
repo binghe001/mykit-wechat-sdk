@@ -1,5 +1,6 @@
 package io.mykit.wechat.mp.beans.json.template.send;
 
+import io.mykit.wechat.mp.beans.json.template.WxTemplateDataItemSend;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

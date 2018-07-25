@@ -1,4 +1,4 @@
-package io.mykit.wechat.mp.http.handler.template;
+package io.mykit.wechat.mp.http.handler.template.send;
 
 import io.mykit.wechat.mp.beans.json.template.WxTemplateId;
 import io.mykit.wechat.mp.beans.json.template.WxTemplateShortId;
@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
  * @Description: 微信模板消息处理类
  */
 @Slf4j
-public class WxTemplateHandler extends BaseHandler {
+public class WxTemplateSendHandler extends BaseHandler {
 
     /**
      * 设置所属行业
