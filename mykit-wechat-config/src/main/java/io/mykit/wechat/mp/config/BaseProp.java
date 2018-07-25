@@ -202,4 +202,8 @@ public class BaseProp {
      * 微信API调用次数清零
      */
     public static final String WEXIN_QUOTA_CLEAR = "weixin.quota.clear";
+    /**
+     * 获取公众号的自动回复规则
+     */
+    public static final String WEXIN_AUTOREPLY_INFO = "weixin.autoreply.info";
 }
