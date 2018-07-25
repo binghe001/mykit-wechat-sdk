@@ -197,4 +197,9 @@ public class BaseProp {
      * 一次性订阅消息,通过API推送订阅模板消息给到授权微信用户
      */
     public static final String WEIXIN_TEMPLATE_SUBSCRIBE = "weixin.template.subscribe";
+
+    /**
+     * 微信API调用次数清零
+     */
+    public static final String WEXIN_QUOTA_CLEAR = "weixin.quota.clear";
 }
