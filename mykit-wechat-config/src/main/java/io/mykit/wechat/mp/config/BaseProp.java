@@ -297,5 +297,8 @@ public class BaseProp {
      */
     public static final String WEIXIN_COMMENT_REPLY_DELETE = "weixin.comment.reply.delete";
 
-
+    /**
+     * 创建标签
+     */
+    public static final String WEXIN_TAG_CREATE = "weixin.tag.create";
 }
