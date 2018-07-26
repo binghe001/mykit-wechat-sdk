@@ -40,6 +40,10 @@ public class WxConstants {
      */
     public static final String TYPE_MPNEWS = "mpnews";
     /**
+     * 图文消息
+     */
+    public static final String TYPE_NEWS = "news";
+    /**
      * 图片
      */
     public static final String TYPE_IMAGE = "image";

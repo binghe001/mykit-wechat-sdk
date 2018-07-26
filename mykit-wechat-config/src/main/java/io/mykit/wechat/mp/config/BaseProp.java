@@ -223,4 +223,45 @@ public class BaseProp {
      * 检验授权凭证（access_token）是否有效
      */
     public static final String WEXIN_OAUTH2_TOKEN_AUTH= "weixin.oauth2.token.auth";
+    /**
+     * 获取临时素材
+     */
+    public static final String WEXIN_MEDIA_GET = "weixin.media.get";
+
+    /**
+     * 高清语音素材获取接口
+     */
+    public static final String WEXIN_MEDIA_JSSDK_GET = "weixin.media.jssdk.get";
+
+    /**
+     * 新增永久图文素材
+     */
+    public static final String WEIXIN_MEDIA_NEWS_ADD = "weixin.media.news.add";
+    /**
+     *  新增其他类型永久素材
+     */
+    public static final String WEIXIN_MEDIA_MATERIAL_ADD = "weixin.media.material.add";
+    /**
+     * 获取永久素材
+     */
+    public static final String WEIXIN_MEDIA_MATERIAL_GET = "weixin.media.material.get";
+    /**
+     * 删除永久素材
+     */
+    public static final String WEIXIN_MEDIA_MATERIAL_DELETE = "weixin.media.materail.delete";
+
+    /**
+     * 修改永久素材
+     */
+    public static final String WEIXIN_MEDIA_MATERAIL_UPDATE = "weixin.media.materail.update";
+    /**
+     * 获取素材总数
+     */
+    public static final String WEIXIN_MEDIA_MATERAIL_COUNT = "weixin.media.materail.count";
+    /**
+     * 获取素材列表
+     */
+    public static final String WEIXIN_MEDIA_MATERAIL_BATCH_GET = "weixin.media.materail.batch.get";
+
+
 }

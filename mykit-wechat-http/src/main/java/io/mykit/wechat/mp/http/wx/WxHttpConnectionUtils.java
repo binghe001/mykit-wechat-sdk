@@ -1,9 +1,11 @@
 package io.mykit.wechat.mp.http.wx;
 
-import io.mykit.wechat.mp.config.LoadProp;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import io.mykit.wechat.mp.http.base.HttpConnectionUtils;
 import io.mykit.wechat.mp.http.constants.WxConstants;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.client.ClientProtocolException;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -136,6 +138,18 @@ public class WxHttpConnectionUtils extends HttpConnectionUtils {
         return httpRequestToFile(fileName, url, "GET", null);
     }
     /**
+     * 其他类型的素材消息，则响应的直接为素材的内容，开发者可以自行保存为文件
+     * @comment 不支持视频文件的下载
+     * @param fileName  素材存储文件路径,完整绝对路径
+     * @param token     认证token
+     * @param '{"media_id":"61224425"}'
+     * @return 素材文件
+     */
+    public static File downloadMaterial(String url, String fileName, String token, String json) {
+        url = url + "?" + WxConstants.ACCESS_TOKEN + "=" + token;
+        return httpRequestToFile(fileName, url, "POST", json);
+    }
+    /**
      * 以http方式发送请求,并将请求响应内容输出到文件
      * @param path    请求路径
      * @param method  请求方法
@@ -199,5 +213,73 @@ public class WxHttpConnectionUtils extends HttpConnectionUtils {
             }
         }
         return file;
+    }
+
+
+    /**
+     * 上传视频永久素材
+     * @param url https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=ACCESS_TOKEN&type=TYPE
+     * @param filePath 视频在本地磁盘的存储路径
+     * @param title 	视频素材的标题
+     * @param introduction 视频素材的描述
+     * @return
+     * 成功：
+     * {
+     *   "media_id":MEDIA_ID,
+     *   "url":URL
+     * }
+     *
+     * 失败：
+     * {"errcode":40007,"errmsg":"invalid media_id"}
+     */
+    public static String uploadVideoFileToWeixinServer(String url, String filePath, String title, String introduction) {
+        File file = new File(filePath);
+        if(!file.exists())
+            return null;
+        String result = null;
+        try {
+            URL url1 = new URL(url);
+            HttpURLConnection conn = (HttpURLConnection) url1.openConnection();
+            conn.setConnectTimeout(5000);
+            conn.setReadTimeout(30000);
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setUseCaches(false);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("Cache-Control", "no-cache");
+            String boundary = "-----------------------------"+System.currentTimeMillis();
+            conn.setRequestProperty("Content-Type", "multipart/form-data; boundary="+boundary);
+            OutputStream output = conn.getOutputStream();
+            output.write(("--" + boundary + "\r\n").getBytes());
+            output.write(String.format("Content-Disposition: form-data; name=\"media\"; filename=\"%s\"\r\n", file.getName()).getBytes());
+            output.write("Content-Type: video/mp4 \r\n\r\n".getBytes());
+            byte[] data = new byte[1024];
+            int len =0;
+            FileInputStream input = new FileInputStream(file);
+            while((len=input.read(data))>-1){
+                output.write(data, 0, len);
+            }
+            output.write(("--" + boundary + "\r\n").getBytes());
+            output.write("Content-Disposition: form-data; name=\"description\";\r\n\r\n".getBytes());
+            output.write(String.format("{\"title\":\"%s\", \"introduction\":\"%s\"}",title,introduction).getBytes());
+            output.write(("\r\n--" + boundary + "--\r\n\r\n").getBytes());
+            output.flush();
+            output.close();
+            input.close();
+            InputStream resp = conn.getInputStream();
+            StringBuffer sb = new StringBuffer();
+            while((len= resp.read(data))>-1)
+                sb.append(new String(data,0,len,"utf-8"));
+            resp.close();
+            result = sb.toString();
+            System.out.println(result);
+        } catch (ClientProtocolException e) {
+            log.error("postFile，不支持http协议",e);
+        } catch (IOException e) {
+            log.error("postFile数据传输失败",e);
+        }
+        log.info("{}: result={}",url,result);
+        return result;
     }
 }

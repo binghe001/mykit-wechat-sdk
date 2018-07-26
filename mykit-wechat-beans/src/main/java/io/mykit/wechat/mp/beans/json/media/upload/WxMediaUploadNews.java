@@ -1,4 +1,4 @@
-package io.mykit.wechat.mp.beans.json.media;
+package io.mykit.wechat.mp.beans.json.media.upload;
 
 import io.mykit.wechat.mp.beans.json.base.BaseJsonBean;
 import lombok.AllArgsConstructor;

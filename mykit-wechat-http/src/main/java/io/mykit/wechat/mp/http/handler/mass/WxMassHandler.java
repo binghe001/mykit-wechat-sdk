@@ -23,7 +23,7 @@ import io.mykit.wechat.mp.beans.json.mass.tag.video.WxMassTagVideoMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.video.WxMassTagVideoUploadMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.voice.WxMassTagVoiceMessage;
 import io.mykit.wechat.mp.beans.json.mass.tag.wxcard.WxMassTagCardMessage;
-import io.mykit.wechat.mp.beans.json.media.WxMediaUploadNews;
+import io.mykit.wechat.mp.beans.json.media.upload.WxMediaUploadNews;
 import io.mykit.wechat.mp.config.LoadProp;
 import io.mykit.wechat.mp.http.base.HttpConnectionUtils;
 import io.mykit.wechat.mp.http.handler.base.BaseHandler;
