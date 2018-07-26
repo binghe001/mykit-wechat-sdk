@@ -180,6 +180,8 @@ public class WxMediaHandlerTest extends BaseTest {
         wxMediaNewsAddItem.setShow_cover_pic(1);
         wxMediaNewsAddItem.setThumb_media_id("J5i3FLnqTZtULBc7PIhJB11E1h1SdRrvy0wXrf_1rTc");
         wxMediaNewsAddItem.setTitle("测试图文消息");
+        wxMediaNewsAddItem.setNeed_open_comment(1);
+        wxMediaNewsAddItem.setOnly_fans_can_comment(0);
         wxMediaUpdateNews.setArticles(wxMediaNewsAddItem);
 
         log.info(WxMediaHandler.updateMaterail(APPID, APPSECRET, wxMediaUpdateNews));

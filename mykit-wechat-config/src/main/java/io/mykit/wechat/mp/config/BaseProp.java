@@ -263,5 +263,39 @@ public class BaseProp {
      */
     public static final String WEIXIN_MEDIA_MATERAIL_BATCH_GET = "weixin.media.materail.batch.get";
 
+    /**
+     * 打开已群发文章评论
+     */
+    public static final String WEIXIN_COMMENT_OPEN = "weixin.comment.open";
+    /**
+     * 关闭已群发文章评论
+     */
+    public static final String WEIXIN_COMMENT_CLOSE = "weixin.comment.close";
+    /**
+     * 查看指定文章的评论数据
+     */
+    public static final String WEIXIN_COMMENT_LIST = "weixin.comment.list";
+
+    /**
+     * 将评论标记精选
+     */
+    public static final String WEIXIN_COMMENT_MARKELECT = "weixin.comment.markelect";
+    /**
+     *  将评论取消精选
+     */
+    public static final String WEIXIN_COMMENT_UNMARKELECT = "weixin.comment.unmarkelect";
+    /**
+     * 删除评论
+     */
+    public static final String WEIXIN_COMMENT_DELETE = "weixin.comment.delete";
+    /**
+     * 回复评论
+     */
+    public static final String WEIXIN_COMMENT_REPLY = "weixin.comment.reply";
+    /**
+     * 删除回复
+     */
+    public static final String WEIXIN_COMMENT_REPLY_DELETE = "weixin.comment.reply.delete";
+
 
 }

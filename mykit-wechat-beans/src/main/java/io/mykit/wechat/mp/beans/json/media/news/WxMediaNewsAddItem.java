@@ -32,6 +32,11 @@ public class WxMediaNewsAddItem extends BaseJsonBean {
     //图文消息的原文地址，即点击“阅读原文”后的URL
     private String content_source_url;
 
+    //Uint32	是否打开评论，0不打开，1打开
+    private Integer need_open_comment;
+    //Uint32	是否粉丝才可评论，0所有人可评论，1粉丝才可评论
+    private Integer only_fans_can_comment;
+
     @Override
     public String toJsonString() {
         return super.toJsonString(this);

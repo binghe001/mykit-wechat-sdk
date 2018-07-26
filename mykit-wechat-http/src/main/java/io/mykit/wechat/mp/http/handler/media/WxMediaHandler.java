@@ -155,6 +155,8 @@ public class WxMediaHandler extends BaseHandler {
      * {
      *    "media_id":MEDIA_ID
      * }
+     *
+     * { “errcode” : 88000， “errmsg” : “without comment privilege”   //没有留言权限 }
      * @throws Exception
      */
     public static String addNews(String appid, String secret, WxMediaNewsAdd wxMediaNewsAdd) throws Exception{
@@ -235,7 +237,9 @@ public class WxMediaHandler extends BaseHandler {
      *      "digest":DIGEST,
      *      "content":CONTENT,
      *      "url":URL,
-     *      "content_source_url":CONTENT_SOURCE_URL
+     *      "content_source_url":CONTENT_SOURCE_URL,
+     *      "need_open_comment ":need_open_comment
+     *      "only_fans_can_comment":only_fans_can_comment
      *      },
      *      //多图文消息有多篇文章
      *   ]
@@ -377,7 +381,9 @@ public class WxMediaHandler extends BaseHandler {
      *                "digest": DIGEST,
      *                "content": CONTENT,
      *                "url": URL,
-     *                "content_source_url": CONTETN_SOURCE_URL
+     *                "content_source_url": CONTETN_SOURCE_URL,
+     *                "need_open_comment ":need_open_comment
+     *                "only_fans_can_comment":only_fans_can_comment
      *            },
      *            //多图文消息会在此处有多篇文章
      *            ]
