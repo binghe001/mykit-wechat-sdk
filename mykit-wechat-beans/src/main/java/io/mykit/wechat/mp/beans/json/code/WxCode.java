@@ -27,4 +27,8 @@ public class WxCode extends BaseJsonBean {
     public String toString() {
         return super.toString(this);
     }
+    @Override
+    public String toJsonString() {
+        return super.toJsonString(this);
+    }
 }

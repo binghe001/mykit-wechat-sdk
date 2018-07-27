@@ -19,4 +19,5 @@ public class WxUserTagName extends BaseJsonBean {
     private static final long serialVersionUID = -4080946666089667092L;
     private String name;
     private Integer id;
+    private Integer count;
 }

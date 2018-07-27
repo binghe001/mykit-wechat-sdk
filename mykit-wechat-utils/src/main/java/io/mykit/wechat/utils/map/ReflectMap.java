@@ -67,9 +67,11 @@ public class ReflectMap {
 	    try {
 	    	Field[] declaredFields = obj.getClass().getDeclaredFields();    
 		    for (Field field : declaredFields) {    
-		        field.setAccessible(true);  
-		        map.put(field.getName(), field.get(obj));  
-		    }    
+		        field.setAccessible(true);
+				if (field.get(obj) != null){
+					map.put(field.getName(), field.get(obj));
+				}
+		    }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -90,8 +92,10 @@ public class ReflectMap {
 		try {
 			Field[] declaredFields = obj.getClass().getDeclaredFields();    
 			for (Field field : declaredFields) {    
-				field.setAccessible(true);  
-				map.put(field.getName(), field.get(obj));  
+				field.setAccessible(true);
+				if (field.get(obj) != null){
+					map.put(field.getName(), field.get(obj));
+				}
 			}
 			if(map.containsKey("serialVersionUID")){
 				map.remove("serialVersionUID");

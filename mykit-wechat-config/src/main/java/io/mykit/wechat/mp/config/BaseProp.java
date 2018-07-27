@@ -301,4 +301,61 @@ public class BaseProp {
      * 创建标签
      */
     public static final String WEXIN_TAG_CREATE = "weixin.tag.create";
+    /**
+     * 获取已创建的标签
+     */
+    public static final String WEXIN_TAG_GET = "weixin.tag.get";
+    /**
+     * 编辑标签
+     */
+    public static final String WEXIN_TAG_UPDATE = "weixin.tag.update";
+
+    /**
+     * 删除标签
+     */
+    public static final String WEIXIN_TAG_DELETE = "weixin.tag.delete";
+    /**
+     * 获取标签下粉丝列表
+     */
+    public static final String WEIXIN_TAG_USER_GET = "weixin.tag.user.get";
+    /**
+     * 批量为用户打标签
+     */
+    public static final String WEIXIN_TAG_BATCHTAGGING = "weixin.tag.batchtagging";
+    /**
+     * 批量为用户取消标签
+     */
+    public static final String WEIXIN_TAG_BATCHUNTAGGING = "weixin.tag.batchtunagging";
+    /**
+     * 获取用户身上的标签列表
+     */
+    public static final String WEIXIN_TAG_GET_LIST = "weixin.tag.get.list";
+    /**
+     * 设置用户备注名
+     */
+    public static final String WEIXIN_USER_INFO_UPDATEREMARK = "weixin.user.info.updateremark";
+    /**
+     * 获取用户基本信息（包括UnionID机制）
+     */
+    public static final String WEIXIN_USER_INFO = "weixin.user.info";
+    /**
+     * 批量获取用户基本信息
+     */
+    public static final String WEIXIN_USER_BATCHGET = "weixin.user.batchget";
+    /**
+     * 获取用户列表
+     */
+    public static final String WEIXIN_USER_GET = "weixin.user.get";
+    /**
+     * 获取公众号的黑名单列表
+     */
+    public static final String WEIXIN_USER_BLACK_LIST = "weixin.user.black.list";
+    /**
+     * 拉黑用户
+     */
+    public static final String WEIXIN_USER_BLACK_BATCHBLACKLIST = "weixin.user.black.batchblacklist";
+    /**
+     * 取消拉黑用户
+     */
+    public static final String WEIXIN_USER_BLACK_BATCHUNBLACKLIST = "weixin.user.black.batchunblacklist";
 }
