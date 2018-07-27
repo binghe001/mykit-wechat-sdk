@@ -10,6 +10,7 @@ import org.apache.http.client.ClientProtocolException;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 /**
  * @Author: liuyazhuang
@@ -135,6 +136,19 @@ public class WxHttpConnectionUtils extends HttpConnectionUtils {
      */
     public static File downloadMedia(String url, String fileName, String token, String mediaId) {
         url = url + "?" + WxConstants.ACCESS_TOKEN + "=" + token + "&media_id=" + mediaId;
+        return httpRequestToFile(fileName, url, "GET", null);
+    }
+
+    /**
+     * 二维码下载接口
+     * @comment 不支持视频文件的下载
+     * @param fileName  素材存储文件路径,完整绝对路径
+     * @param token     认证token
+     * @param mediaId   素材ID（对应上传后获取到的ID）
+     * @return 素材文件
+     */
+    public static File downloadQrcode(String url, String fileName, String ticket) throws UnsupportedEncodingException {
+        url = url + "?ticket=" + URLEncoder.encode(ticket, "UTF-8");
         return httpRequestToFile(fileName, url, "GET", null);
     }
     /**

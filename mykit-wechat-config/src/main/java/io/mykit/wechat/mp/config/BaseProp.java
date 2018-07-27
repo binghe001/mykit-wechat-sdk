@@ -358,4 +358,13 @@ public class BaseProp {
      * 取消拉黑用户
      */
     public static final String WEIXIN_USER_BLACK_BATCHUNBLACKLIST = "weixin.user.black.batchunblacklist";
+
+    /**
+     *  二维码请求
+     */
+    public static final String WEIXIN_QRCODE_CREATE = "weixin.qrcode.create";
+    /**
+     * 通过ticket换取二维码
+     */
+    public static final String WEIXIN_QRCODE_SHOW = "weixin.qrcode.show";
 }
