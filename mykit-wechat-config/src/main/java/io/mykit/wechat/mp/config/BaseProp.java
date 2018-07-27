@@ -363,8 +363,13 @@ public class BaseProp {
      *  二维码请求
      */
     public static final String WEIXIN_QRCODE_CREATE = "weixin.qrcode.create";
+
     /**
      * 通过ticket换取二维码
      */
     public static final String WEIXIN_QRCODE_SHOW = "weixin.qrcode.show";
+    /**
+     * 微信短连接
+     */
+    public static final String WEIXIN_SHORTURL = "weixin.shorturl";
 }
