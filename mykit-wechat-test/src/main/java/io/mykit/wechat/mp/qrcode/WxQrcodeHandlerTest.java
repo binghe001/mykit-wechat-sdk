@@ -9,8 +9,6 @@ import io.mykit.wechat.mp.http.handler.qrcode.WxQrcodeHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import java.io.File;
-
 /**
  * @Author: liuyazhuang
  * @Date: 2018/7/27 13:55
