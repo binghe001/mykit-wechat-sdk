@@ -2,7 +2,7 @@ package io.mykit.wechat.mp.http.handler.token;
 
 import io.mykit.wechat.cache.redis.RedisUtils;
 import io.mykit.wechat.mp.beans.json.token.WxAccessToken;
-import io.mykit.wechat.mp.http.constants.WxConstants;
+import io.mykit.wechat.utils.constants.WxConstants;
 import io.mykit.wechat.mp.http.proxy.token.AccessTokenProxy;
 import io.mykit.wechat.utils.common.StringUtils;
 import io.mykit.wechat.utils.json.JsonUtils;

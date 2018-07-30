@@ -1,8 +1,8 @@
-package io.mykit.wechat.mp.beans.xml.receive.voice;
+package io.mykit.wechat.mp.beans.router.receive;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamConverter;
-import io.mykit.wechat.mp.beans.xml.receive.base.WxBaseReceiveMessage;
+import io.mykit.wechat.mp.beans.json.base.BaseJsonBean;
 import io.mykit.wechat.utils.xml.XStreamCDataConverter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,31 +11,31 @@ import lombok.NoArgsConstructor;
 
 /**
  * @Author: liuyazhuang
- * @Date: 2018/7/18 17:55
- * @Description: 接收到的语音消息
+ * @Date: 2018/7/30 09:32
+ * @Description: 微信路由，业务根据此JavaBean做判断转化为具体的JavaBean
  */
 @XStreamAlias("xml")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class WxReceiveVoiceMessage extends WxBaseReceiveMessage {
+public class WxReceiveRouterMessage extends BaseJsonBean {
+    private static final long serialVersionUID = -7407464380592497012L;
 
-    @XStreamAlias("MediaId")
+    @XStreamAlias("MsgType")
     @XStreamConverter(value = XStreamCDataConverter.class)
-    private String mediaId;
+    private String msgType;
 
-    @XStreamAlias("Format")
+    @XStreamAlias("Event")
     @XStreamConverter(value = XStreamCDataConverter.class)
-    private String format;
+    private String event;
 
-    @XStreamAlias("MsgId")
-    private String msgId;
-
-    /**
-     * 语音识别结果
-     */
-    @XStreamAlias("Recognition")
+    @XStreamAlias("Ticket")
     @XStreamConverter(value = XStreamCDataConverter.class)
-    private String recognition;
+    private String ticket;
+
+    @Override
+    public String toJsonString() {
+        return super.toJsonString(this);
+    }
 }

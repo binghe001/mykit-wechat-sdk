@@ -1,9 +1,7 @@
 package io.mykit.wechat.mp.http.wx;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import io.mykit.wechat.mp.http.base.HttpConnectionUtils;
-import io.mykit.wechat.mp.http.constants.WxConstants;
+import io.mykit.wechat.utils.constants.WxConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.ClientProtocolException;
 

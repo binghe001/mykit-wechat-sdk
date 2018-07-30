@@ -6,7 +6,7 @@ import io.mykit.wechat.mp.beans.json.media.upload.WxMediaUpdateNews;
 import io.mykit.wechat.mp.beans.map.WxMediaId;
 import io.mykit.wechat.mp.config.LoadProp;
 import io.mykit.wechat.mp.http.base.HttpConnectionUtils;
-import io.mykit.wechat.mp.http.constants.WxConstants;
+import io.mykit.wechat.utils.constants.WxConstants;
 import io.mykit.wechat.mp.http.handler.base.BaseHandler;
 import io.mykit.wechat.mp.http.handler.token.AccessTokenHandler;
 import io.mykit.wechat.mp.http.wx.WxHttpConnectionUtils;

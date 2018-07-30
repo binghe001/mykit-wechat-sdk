@@ -1,6 +1,6 @@
 package io.mykit.wechat.mp.http.handler.base;
 
-import io.mykit.wechat.mp.http.constants.WxConstants;
+import io.mykit.wechat.utils.constants.WxConstants;
 import io.mykit.wechat.mp.http.handler.token.AccessTokenHandler;
 import org.apache.commons.httpclient.NameValuePair;
 

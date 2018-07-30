@@ -14,7 +14,7 @@ import io.mykit.wechat.mp.beans.json.media.upload.WxMediaUpdateNews;
 import io.mykit.wechat.mp.beans.json.media.upload.WxMediaUploadNews;
 import io.mykit.wechat.mp.beans.json.media.upload.WxMediaUploadNewsItem;
 import io.mykit.wechat.mp.beans.map.WxMediaId;
-import io.mykit.wechat.mp.http.constants.WxConstants;
+import io.mykit.wechat.utils.constants.WxConstants;
 import io.mykit.wechat.mp.http.handler.mass.WxMassHandler;
 import io.mykit.wechat.mp.http.handler.media.WxMediaHandler;
 import lombok.extern.slf4j.Slf4j;

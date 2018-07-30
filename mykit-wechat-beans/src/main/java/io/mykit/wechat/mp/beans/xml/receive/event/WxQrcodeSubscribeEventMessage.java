@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 /**
  * @Author: liuyazhuang
  * @Date: 2018/7/18 19:24
- * @Description: 扫描二维码,用户已关注时的事件推送
+ * @Description: 扫描二维码,用户未关注时，进行关注后的事件推送
  */
 @XStreamAlias("xml")
 @Data
