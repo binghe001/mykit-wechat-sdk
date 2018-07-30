@@ -23,4 +23,9 @@ public class WxBaseReceiveMessage extends WxBaseMessage {
     @XStreamConverter(value = XStreamCDataConverter.class)
     private String msgType;
 
+
+    @Override
+    public String toJsonString() {
+        return super.toJsonString(this);
+    }
 }
