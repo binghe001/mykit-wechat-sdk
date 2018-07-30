@@ -1,6 +1,6 @@
 package io.mykit.wechat.bean.xml.test;
 
-import io.mykit.wechat.mp.beans.router.WxRouterMessage;
+import io.mykit.wechat.mp.beans.router.receive.WxReceiveRouterMessage;
 import io.mykit.wechat.mp.beans.xml.receive.event.mass.WxMassCopyrightCheckResult;
 import io.mykit.wechat.mp.beans.xml.receive.event.mass.WxMassEventMessage;
 import io.mykit.wechat.mp.beans.xml.receive.event.mass.WxMassResultListItem;
@@ -234,7 +234,7 @@ public class BeansParserTest {
     public void testXml2WxBaseReceiveMessage() throws Exception{
         String str = "<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1348831860</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[this is a test]]></Content><MsgId>1234567890123456</MsgId></xml>";
 
-        WxRouterMessage wxRouterMessage = XStreamHandler.toBean(str, WxRouterMessage.class);
+        WxReceiveRouterMessage wxRouterMessage = XStreamHandler.toBean(str, WxReceiveRouterMessage.class);
         log.info(wxRouterMessage.toJsonString());
     }
 
