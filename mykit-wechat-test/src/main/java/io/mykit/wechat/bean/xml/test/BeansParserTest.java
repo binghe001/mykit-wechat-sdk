@@ -9,6 +9,7 @@ import io.mykit.wechat.mp.beans.xml.receive.event.menu.WxMenuPicSysPhotoMessage;
 import io.mykit.wechat.mp.beans.xml.receive.voice.WxReceiveVoiceMessage;
 import io.mykit.wechat.mp.beans.xml.send.news.WxSendNewsItemMessage;
 import io.mykit.wechat.mp.beans.xml.send.news.WxSendNewsMessage;
+import io.mykit.wechat.mp.http.constants.WxConstants;
 import io.mykit.wechat.utils.crypt.wrapper.WxBizMsgCryptWrapper;
 import io.mykit.wechat.utils.json.JsonUtils;
 import io.mykit.wechat.utils.xml.handler.XStreamHandler;
@@ -129,13 +130,16 @@ public class BeansParserTest {
         String str = "<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1531969861648</CreateTime><MsgType><![CDATA[msgType]]></MsgType><Event><![CDATA[event]]></Event><EventKey><![CDATA[eventKey]]></EventKey><SendPicsInfo><Count>1</Count><PicList><item><PicMd5Sum><![CDATA[picMd5Sum]]></PicMd5Sum></item></PicList></SendPicsInfo></xml>";
         //String str = "<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1531982446839</CreateTime><MsgType><![CDATA[news]]></MsgType><ArticleCount>2</ArticleCount><Articles><item><Title><![CDATA[title]]></Title><Description><![CDATA[description]]></Description><PicUrl><![CDATA[picUrl]]></PicUrl><Url><![CDATA[url]]></Url></item><item><Title><![CDATA[title]]></Title><Description><![CDATA[description]]></Description><PicUrl><![CDATA[picUrl]]></PicUrl><Url><![CDATA[url]]></Url></item></Articles></xml>";
         log.info("原字符串：" + str);
+        log.info("源标签是否包含<Encrypt>：" + str.contains(WxConstants.TAG_ENCRYPT));
 
         String enStr = WxBizMsgCryptWrapper.encryptMsg(encodingAesKey, token, timestamp, nonce, appId, str);
         log.info("加密后：" + enStr);
+        log.info("加密后标签是否包含<Encrypt>：" + enStr.contains(WxConstants.TAG_ENCRYPT));
 
 
         String deStr = WxBizMsgCryptWrapper.decryptMsg(encodingAesKey, token,  appId, enStr);
         log.info("解密后：" + deStr);
+        log.info("解密后标签是否包含<Encrypt>：" + deStr.contains(WxConstants.TAG_ENCRYPT));
 
         log.info(String.valueOf(str.equals(deStr)));
     }

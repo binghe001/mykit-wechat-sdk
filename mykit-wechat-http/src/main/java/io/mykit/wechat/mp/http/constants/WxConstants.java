@@ -67,4 +67,9 @@ public class WxConstants {
      * 微信卡券
      */
     public static final String TYPE_WXCARD = "wxcard";
+
+    /**
+     * 包含<Encrypt>标签
+     */
+    public static final String TAG_ENCRYPT = "<Encrypt>";
 }
