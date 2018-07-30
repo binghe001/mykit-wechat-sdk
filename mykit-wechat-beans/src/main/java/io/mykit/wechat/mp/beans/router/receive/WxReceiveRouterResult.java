@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
  *
  * 具体转化规则如下:
  * routerType类型                                      对应的常量                                               WxBaseReceiveMessage强制转化的具体类型
+ * -----------------------------------------------------------------------------------------------------------------------------------------------------
  * router_text                                    WxConstants.ROUTER_TEXT                                              WxReceiveTextMessage
  * router_image                                   WxConstants.ROUTER_IMAGE                                             WxReceiveImageMessage
  * router_voice                                   WxConstants.ROUTER_VOICE                                             WxReceiveVoiceMessage
