@@ -28,4 +28,9 @@ public class WxOAuth2UserInfo extends WxCode {
     private String headimgurl;
     private List<String> privilege;
     private String unionid;
+
+    @Override
+    public String toJsonString() {
+        return super.toJsonString(this);
+    }
 }
