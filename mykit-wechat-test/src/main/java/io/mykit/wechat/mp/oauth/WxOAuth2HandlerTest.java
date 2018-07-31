@@ -17,7 +17,7 @@ public class WxOAuth2HandlerTest extends BaseTest {
     @Test
     public void testGetUserInfo() throws Exception{
         WxOAuth2Code wxOAuth2Code = new WxOAuth2Code();
-        wxOAuth2Code.setCode("1");
+        wxOAuth2Code.setCode("123");
         log.info(WxOAuth2Handler.getUserInfo(APPID, APPSECRET, wxOAuth2Code).toJsonString());
     }
 }
