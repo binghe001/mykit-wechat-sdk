@@ -325,8 +325,11 @@ public class WxOAuth2Handler extends BaseHandler {
         }
         //存在errcode，则打印日志，并抛出异常
         if (ret.contains(WxConstants.ERRCODE)){
-            log.info(ret);
-            throw new RuntimeException(ret);
+            WxCode wxCode =  JsonUtils.json2Bean(ret, WxCode.class);
+            if(wxCode.getErrcode() != WxCode.ERRCODE_NORMAL){
+                log.info(ret);
+                throw new RuntimeException(ret);
+            }
         }
         return getWxOAuth2UserInfo(appid, secret, ret);
     }
