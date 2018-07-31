@@ -7,15 +7,19 @@ import io.mykit.wechat.mp.config.LoadProp;
 import io.mykit.wechat.mp.http.base.HttpConnectionUtils;
 import io.mykit.wechat.mp.http.handler.base.BaseHandler;
 import io.mykit.wechat.utils.common.StringUtils;
+import io.mykit.wechat.utils.constants.WxConstants;
 import io.mykit.wechat.utils.json.JsonUtils;
 import io.mykit.wechat.utils.map.ReflectMap;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.Map;
 
 /**
  * @Author: liuyazhuang
  * @Date: 2018/7/25 14:41
  * @Description: 通过code换取网页授权access_token
  */
-
+@Slf4j
 public class WxOAuth2Handler extends BaseHandler {
 
     private static final String WX_OAUTH2_ACCESS_TOKEN = "oauth2.access.token";
@@ -47,7 +51,10 @@ public class WxOAuth2Handler extends BaseHandler {
     public static String getOAuth2AccessToken(String appid, String secret, WxOAuth2Code wxOAuth2Code) throws Exception{
         String accessTokenKey = WX_OAUTH2_ACCESS_TOKEN.concat(appid).concat(secret);
         String refreshTokenKey = WX_OAUTH2_REFRESH_TOKEN.concat(appid).concat(secret);
-        String ret = HttpConnectionUtils.getWechatData(LoadProp.getValue(LoadProp.WEXIN_OAUTH2_TOKEN), getAccessTokenNameValuePairs(appid, secret, ReflectMap.beanToMap(wxOAuth2Code)), null, HttpConnectionUtils.TYPE_STREAM);
+        Map<String, Object> map = ReflectMap.beanToMap(wxOAuth2Code);
+        map.put("appid", appid);
+        map.put("secret", secret);
+        String ret = HttpConnectionUtils.getWechatData(LoadProp.getValue(LoadProp.WEXIN_OAUTH2_TOKEN), getAccessTokenNameValuePairs(map), null, HttpConnectionUtils.TYPE_STREAM);
         if(StringUtils.isEmpty(ret))
             throw new RuntimeException("the data of the weixin api response is null, the API is ===> " + LoadProp.getValue(LoadProp.WEXIN_OAUTH2_TOKEN));
         WxOAuth2AccessToken wxOAuth2AccessToken = JsonUtils.json2Bean(ret, WxOAuth2AccessToken.class);
@@ -201,6 +208,42 @@ public class WxOAuth2Handler extends BaseHandler {
         if(StringUtils.isEmpty(ret)){
             ret = refreshOAuth2AccessToken(appid, secret);
         }
+        return getWxOAuth2UserInfo(appid, secret, ret);
+    }
+
+    /**
+     * 获取微信用户信息
+     * @param appid appid
+     * @param secret secret
+     * @param ret
+     * @return
+     * 正确：
+     * {    "openid":" OPENID",
+     * " nickname": NICKNAME,
+     * "sex":"1",
+     * "province":"PROVINCE"
+     * "city":"CITY",
+     * "country":"COUNTRY",
+     * "headimgurl":    "http://thirdwx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaFqAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/46",
+     * "privilege":[ "PRIVILEGE1" "PRIVILEGE2"     ],
+     * "unionid": "o6_bmasdasdsad6_2sgVt7hMZOPfL"
+     * }
+     *
+     * 参数	                            描述
+     * openid	                    用户的唯一标识
+     * nickname	                    用户昵称
+     * sex	                        用户的性别，值为1时是男性，值为2时是女性，值为0时是未知
+     * province	                    用户个人资料填写的省份
+     * city	                        普通用户个人资料填写的城市
+     * country	                    国家，如中国为CN
+     * headimgurl	                用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空。若用户更换头像，原有头像URL将失效。
+     * privilege	                用户特权信息，json 数组，如微信沃卡用户为（chinaunicom）
+     * unionid	                    只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。
+     * 错误：
+     * {"errcode":40003,"errmsg":" invalid openid "}
+     * @throws Exception
+     */
+    private static WxOAuth2UserInfo getWxOAuth2UserInfo(String appid, String secret, String ret) throws Exception {
         //验证access_token是否有效
         WxOAuth2AccessToken wxOAuth2AccessToken = JsonUtils.json2Bean(ret, WxOAuth2AccessToken.class);
         //验证access_token是否有效
@@ -226,6 +269,66 @@ public class WxOAuth2Handler extends BaseHandler {
         wxOAuth2GetUser.setAccess_token(wxOAuth2AccessToken.getAccess_token());
         wxOAuth2GetUser.setOpenid(wxOAuth2AccessToken.getOpenid());
         return getUserInfo(wxOAuth2GetUser);
+    }
+
+
+    /**
+     * 获取用户信息
+     * @param appid appid
+     * @param secret secret
+     * @param wxOAuth2Code 封装的网页传递过来的code
+     * @return
+     * 正确：
+     * { "openid":" OPENID",
+     * " nickname": NICKNAME,
+     * "sex":"1",
+     * "province":"PROVINCE"
+     * "city":"CITY",
+     * "country":"COUNTRY",
+     * "headimgurl":    "http://thirdwx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaFqAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/46",
+     * "privilege":[ "PRIVILEGE1" "PRIVILEGE2"     ],
+     * "unionid": "o6_bmasdasdsad6_2sgVt7hMZOPfL"
+     * }
+     *
+     * 参数	                            描述
+     * openid	                    用户的唯一标识
+     * nickname	                    用户昵称
+     * sex	                        用户的性别，值为1时是男性，值为2时是女性，值为0时是未知
+     * province	                    用户个人资料填写的省份
+     * city	                        普通用户个人资料填写的城市
+     * country	                    国家，如中国为CN
+     * headimgurl	                用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空。若用户更换头像，原有头像URL将失效。
+     * privilege	                用户特权信息，json 数组，如微信沃卡用户为（chinaunicom）
+     * unionid	                    只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。
+     * 错误：
+     * {"errcode":40003,"errmsg":" invalid openid "}
+     * @throws Exception
+     */
+    public static WxOAuth2UserInfo getUserInfo(String appid, String secret, WxOAuth2Code wxOAuth2Code) throws Exception{
+        String accessTokenKey = WX_OAUTH2_ACCESS_TOKEN.concat(appid).concat(secret);
+        String ret = RedisUtils.getValueFromRedis(accessTokenKey);
+        //缓存中的access_token信息为空
+        if(StringUtils.isEmpty(ret)){
+            //拼接refreshTokenKey并从Redis缓存中获取refreshToken
+            String refreshTokenKey = WX_OAUTH2_REFRESH_TOKEN.concat(appid).concat(secret);
+            String refreshToken = RedisUtils.getValueFromRedis(refreshTokenKey);
+            //refreshToken为空，则调用获取access_token接口
+            if(StringUtils.isEmpty(refreshToken)){
+                ret = getOAuth2AccessToken(appid, secret, wxOAuth2Code);
+            }else{          //refreshToken不为空，调用刷新access_token的接口
+                ret = refreshOAuth2AccessToken(appid, secret);
+            }
+        }
+        //为空，抛出异常
+        if(StringUtils.isEmpty(ret)){
+            throw new RuntimeException("access_token is null, sdk call weixin getAccessToken and refreshAccessToken API, But access_token still is null...");
+        }
+        //存在errcode，则打印日志，并抛出异常
+        if (ret.contains(WxConstants.ERRCODE)){
+            log.info(ret);
+            throw new RuntimeException(ret);
+        }
+        return getWxOAuth2UserInfo(appid, secret, ret);
     }
 
 }
