@@ -372,4 +372,12 @@ public class BaseProp {
      * 微信短连接
      */
     public static final String WEIXIN_SHORTURL = "weixin.shorturl";
+    /**
+     * 获取用户增减数据
+     */
+    public static final String WEIXIN_DATACUBE_GETUSERSUMMARY = "weixin.datacube.getusersummary";
+    /**
+     * 获取累计用户数据
+     */
+    public static final String WEIXIN_DATACUBE_GETUSERCUMULATE = "weixin.datacube.getusercumulate";
 }
