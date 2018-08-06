@@ -1,6 +1,6 @@
 package io.mykit.wechat.mp.http.handler.analysis;
 
-import io.mykit.wechat.mp.beans.json.analysis.user.req.WxUserAnalysisDate;
+import io.mykit.wechat.mp.beans.json.analysis.req.WxAnalysisDate;
 import io.mykit.wechat.mp.beans.json.analysis.user.resp.WxUserCumulateAnalysisResp;
 import io.mykit.wechat.mp.beans.json.analysis.user.resp.WxUserSummaryAnalysisResp;
 import io.mykit.wechat.mp.config.LoadProp;
@@ -40,7 +40,7 @@ public class WxAnalysisHandler extends BaseHandler {
      * }
      * @throws Exception
      */
-    public static WxUserSummaryAnalysisResp getUserSummary(String appid, String secret, WxUserAnalysisDate wxUserAnalysisDate) throws Exception{
+    public static WxUserSummaryAnalysisResp getUserSummary(String appid, String secret, WxAnalysisDate wxUserAnalysisDate) throws Exception{
         return JsonUtils.json2Bean(HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_DATACUBE_GETUSERSUMMARY), wxUserAnalysisDate.toJsonString(), getAccessTokenNameValuePairs(appid, secret) ,null, HttpConnectionUtils.TYPE_STREAM), WxUserSummaryAnalysisResp.class);
     }
 
@@ -65,7 +65,7 @@ public class WxAnalysisHandler extends BaseHandler {
      * }
      * @throws Exception
      */
-    public static WxUserCumulateAnalysisResp getUserCumulate(String appid, String secret, WxUserAnalysisDate wxUserAnalysisDate) throws Exception{
+    public static WxUserCumulateAnalysisResp getUserCumulate(String appid, String secret, WxAnalysisDate wxUserAnalysisDate) throws Exception{
         return JsonUtils.json2Bean(HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_DATACUBE_GETUSERCUMULATE), wxUserAnalysisDate.toJsonString(), getAccessTokenNameValuePairs(appid, secret) ,null, HttpConnectionUtils.TYPE_STREAM), WxUserCumulateAnalysisResp.class);
     }
 }

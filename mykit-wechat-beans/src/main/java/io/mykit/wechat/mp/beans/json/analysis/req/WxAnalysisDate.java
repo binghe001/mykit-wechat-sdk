@@ -1,4 +1,4 @@
-package io.mykit.wechat.mp.beans.json.analysis.user.req;
+package io.mykit.wechat.mp.beans.json.analysis.req;
 
 import io.mykit.wechat.mp.beans.json.base.BaseJsonBean;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class WxUserAnalysisDate extends BaseJsonBean {
+public class WxAnalysisDate extends BaseJsonBean {
     private static final long serialVersionUID = -6453049694574983101L;
     //获取数据的起始日期，begin_date和end_date的差值需小于“最大时间跨度”（比如最大时间跨度为1时，begin_date和end_date的差值只能为0，才能小于1），否则会报错
     private String begin_date;
