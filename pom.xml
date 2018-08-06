@@ -144,6 +144,45 @@
                     <aggregate>true</aggregate>
                     <charset>UTF-8</charset>
                     <docencoding>UTF-8</docencoding>
+                    <aggregate>true</aggregate>
+                    <tags>
+                        <tag>
+                            <name>author</name>
+                            <placement>a</placement>
+                            <head>作者</head>
+                        </tag>
+                        <tag>
+                            <name>Author</name>
+                            <placement>a</placement>
+                            <head>作者</head>
+                        </tag>
+                        <tag>
+                            <name>version</name>
+                            <placement>a</placement>
+                            <head>版本号</head>
+                        </tag>
+                        <tag>
+                            <name>date</name>
+                            <placement>a</placement>
+                            <head>日期</head>
+                        </tag>
+                        <tag>
+                            <name>Date</name>
+                            <placement>a</placement>
+                            <head>日期</head>
+                        </tag>
+                        <tag>
+                            <name>description</name>
+                            <placement>a</placement>
+                            <head>功能描述</head>
+                        </tag>
+                        <tag>
+                            <name>Description</name>
+                            <placement>a</placement>
+                            <head>功能描述</head>
+                        </tag>
+                    </tags>
+
                 </configuration>
                 <executions>
                     <execution>
