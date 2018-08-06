@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 /**
  * @Author: liuyazhuang
  * @Date: 2018/8/1 15:12
- * @Description: 用户分析接口参数
+ * @Description: 分析接口参数
  */
 @Data
 @NoArgsConstructor

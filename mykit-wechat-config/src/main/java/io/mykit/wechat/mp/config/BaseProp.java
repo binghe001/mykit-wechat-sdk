@@ -380,4 +380,28 @@ public class BaseProp {
      * 获取累计用户数据
      */
     public static final String WEIXIN_DATACUBE_GETUSERCUMULATE = "weixin.datacube.getusercumulate";
+    /**
+     * 获取图文群发每日数据
+     */
+    public static final String WEIXIN_NEWS_ARTICLE_SUMMARY = "weixin.news.article.summary";
+    /**
+     * 获取图文群发总数据
+     */
+    public static final String WEIXIN_NEWS_ARTICLE_TOTAL = "weixin.news.article.total";
+    /**
+     * 获取图文统计数据
+     */
+    public static final String WEIXIN_NEWS_USER_READ = "weixin.news.user.read";
+    /**
+     * 获取图文统计分时数据
+     */
+    public static final String WEIXIN_NEWS_USER_READ_HOUR = "weixin.news.user.read.hour";
+    /**
+     * 获取图文分享转发数据
+     */
+    public static final String WEIXIN_NEWS_USER_SHARE = "weixin.news.user.share";
+    /**
+     * 获取图文分享转发分时数据
+     */
+    public static final String WEIXIN_NEWS_USER_SHARE_HOUR = "weixin.news.user.share.hour";
 }
