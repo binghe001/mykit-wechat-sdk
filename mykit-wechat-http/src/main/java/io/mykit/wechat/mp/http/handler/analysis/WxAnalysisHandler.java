@@ -1,5 +1,6 @@
 package io.mykit.wechat.mp.http.handler.analysis;
 
+import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.msg.upstream.WxMsgUpstreamAnalysisResp;
 import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.summary.WxArticleSummaryAnalysisResp;
 import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.total.WxNewsArticleTotalAnalysisResp;
 import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.user.read.WxNewsUserReadAnalysisResp;
@@ -332,4 +333,31 @@ public class WxAnalysisHandler extends BaseHandler {
     public static WxNewsUserShareHourAnalysisResp getUserShareHour(String appid, String secret, WxAnalysisDate wxAnalysisDate) throws Exception{
         return JsonUtils.json2Bean(HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_NEWS_USER_SHARE_HOUR), wxAnalysisDate.toJsonString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM), WxNewsUserShareHourAnalysisResp.class);
     }
+
+    /**
+     * 获取消息发送概况数据
+     * @param appid appid
+     * @param secret secret
+     * @param wxAnalysisDate
+     *   {
+     *     "begin_date": "2014-12-02",
+     *     "end_date": "2014-12-07"
+     * }
+     * @return
+     * {
+     *    "list": [
+     *        {
+     *            "ref_date": "2014-12-07",
+     *            "msg_type": 1,
+     *            "msg_user": 282,
+     *            "msg_count": 817
+     *        }//后续还有同一ref_date的不同msg_type的数据，以及不同ref_date（在时间范围内）的数据
+     *    ]
+     * }
+     * @throws Exception
+     */
+    public static WxMsgUpstreamAnalysisResp getUpstreamMsg(String appid, String secret, WxAnalysisDate wxAnalysisDate) throws Exception{
+        return JsonUtils.json2Bean(HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MSG_USTREAM_MSG), wxAnalysisDate.toJsonString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM), WxMsgUpstreamAnalysisResp.class);
+    }
+
 }

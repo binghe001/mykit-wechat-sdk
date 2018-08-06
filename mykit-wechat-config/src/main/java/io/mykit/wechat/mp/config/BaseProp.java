@@ -404,4 +404,8 @@ public class BaseProp {
      * 获取图文分享转发分时数据
      */
     public static final String WEIXIN_NEWS_USER_SHARE_HOUR = "weixin.news.user.share.hour";
+    /**
+     * 获取消息发送概况数据
+     */
+    public static final String WEIXIN_MSG_USTREAM_MSG = "weixin.msg.upstream.msg";
 }
