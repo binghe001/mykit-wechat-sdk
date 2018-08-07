@@ -1,6 +1,10 @@
 package io.mykit.wechat.mp.http.handler.analysis;
 
 import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.msg.upstream.WxMsgUpstreamAnalysisResp;
+import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.msg.upstream.dist.WxMsgUpstreamDistAnalysisResp;
+import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.msg.upstream.hour.WxMsgUpstreamHourAnalysisResp;
+import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.msg.upstream.month.WxMsgUpstreamMonthAnalysisResp;
+import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.msg.upstream.week.WxMsgUpstreamWeekAnalysisResp;
 import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.summary.WxArticleSummaryAnalysisResp;
 import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.total.WxNewsArticleTotalAnalysisResp;
 import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.user.read.WxNewsUserReadAnalysisResp;
@@ -359,5 +363,166 @@ public class WxAnalysisHandler extends BaseHandler {
     public static WxMsgUpstreamAnalysisResp getUpstreamMsg(String appid, String secret, WxAnalysisDate wxAnalysisDate) throws Exception{
         return JsonUtils.json2Bean(HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MSG_USTREAM_MSG), wxAnalysisDate.toJsonString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM), WxMsgUpstreamAnalysisResp.class);
     }
+
+    /**
+     * 获取消息分送分时数据
+     * @param appid appid
+     * @param secret secret
+     * @param wxAnalysisDate
+     * {
+     *     "begin_date": "2014-12-02",
+     *     "end_date": "2014-12-07"
+     * }
+     * @return
+     * {
+     *    "list": [
+     *        {
+     *            "ref_date": "2014-12-07",
+     *            "ref_hour": 0,
+     *            "msg_type": 1,
+     *            "msg_user": 9,
+     *            "msg_count": 10
+     *        }//后续还有同一ref_hour的不同msg_type的数据，以及不同ref_hour的数据，ref_date固定，因为最大时间跨度为1
+     *    ]
+     * }
+     * @throws Exception
+     */
+    public static WxMsgUpstreamHourAnalysisResp getUpstreamMsgHour(String appid, String secret, WxAnalysisDate wxAnalysisDate) throws Exception{
+        return JsonUtils.json2Bean(HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MSG_USTREAM_MSG_HOUR), wxAnalysisDate.toJsonString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM), WxMsgUpstreamHourAnalysisResp.class);
+    }
+
+
+    /**
+     * 获取消息发送周数据
+     * @param appid appid
+     * @param secret secret
+     * @param wxAnalysisDate
+     * {
+     *     "begin_date": "2014-12-02",
+     *     "end_date": "2014-12-07"
+     * }
+     * @return
+     * {
+     *    "list": [
+     *        {
+     *            "ref_date": "2014-12-08",
+     *            "msg_type": 1,
+     *            "msg_user": 16,
+     *            "msg_count": 27
+     *        }    //后续还有同一ref_date下不同msg_type的数据，及不同ref_date的数据
+     *    ]
+     * }
+     * @throws Exception
+     */
+    public static WxMsgUpstreamWeekAnalysisResp getUpStreamMsgWeek(String appid, String secret, WxAnalysisDate wxAnalysisDate) throws Exception{
+        return JsonUtils.json2Bean(HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MSG_UPSTREAM_MSG_WEEK), wxAnalysisDate.toJsonString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM), WxMsgUpstreamWeekAnalysisResp.class);
+    }
+
+    /**
+     * 获取消息发送月数据
+     * @param appid appid
+     * @param secret secret
+     * @param wxAnalysisDate
+     * {
+     *     "begin_date": "2014-12-02",
+     *     "end_date": "2014-12-07"
+     * }
+     * @return
+     * {
+     *    "list": [
+     *        {
+     *            "ref_date": "2014-11-01",
+     *            "msg_type": 1,
+     *            "msg_user": 7989,
+     *            "msg_count": 42206
+     *        }//后续还有同一ref_date下不同msg_type的数据，及不同ref_date的数据
+     *    ]
+     * }
+     * @throws Exception
+     */
+    public static WxMsgUpstreamMonthAnalysisResp getUpstreamMsgMonth(String appid, String secret, WxAnalysisDate wxAnalysisDate) throws Exception{
+        return JsonUtils.json2Bean(HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MSG_UPSTREAM_MSG_MONTH), wxAnalysisDate.toJsonString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM), WxMsgUpstreamMonthAnalysisResp.class);
+    }
+
+
+    /**
+     * 获取消息发送分布数据
+     * @param appid appid
+     * @param secret secret
+     * @param wxAnalysisDate
+     * {
+     *     "begin_date": "2014-12-02",
+     *     "end_date": "2014-12-07"
+     * }
+     * @return
+     * {
+     *    "list": [
+     *        {
+     *            "ref_date": "2014-12-07",
+     *            "count_interval": 1,
+     *            "msg_user": 246
+     *        }//后续还有同一ref_date下不同count_interval的数据，及不同ref_date的数据
+     *    ]
+     * }
+     * @throws Exception
+     */
+    public static WxMsgUpstreamDistAnalysisResp getUpstreamMsgDist(String appid, String secret, WxAnalysisDate wxAnalysisDate) throws Exception{
+        return JsonUtils.json2Bean(HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MSG_UPSTREAM_DIST), wxAnalysisDate.toJsonString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM), WxMsgUpstreamDistAnalysisResp.class);
+    }
+
+    /**
+     * 获取消息发送分布周数据
+     * @param appid appid
+     * @param secret secret
+     * @param wxAnalysisDate
+     * {
+     *     "begin_date": "2014-12-02",
+     *     "end_date": "2014-12-07"
+     * }
+     * @return
+     * {
+     *    "list": [
+     *        {
+     *            "ref_date": "2014-12-07",
+     *            "count_interval": 1,
+     *            "msg_user": 246
+     *        }//后续还有同一ref_date下不同count_interval的数据，及不同ref_date的数据
+     *    ]
+     * }
+     * @throws Exception
+     */
+    public static WxMsgUpstreamDistAnalysisResp getUpstreamMsgDistWeek(String appid, String secret, WxAnalysisDate wxAnalysisDate) throws Exception{
+        return JsonUtils.json2Bean(HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MSG_UPSTREAM_DIST_WEEK), wxAnalysisDate.toJsonString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM), WxMsgUpstreamDistAnalysisResp.class);
+    }
+
+    /**
+     * 获取消息发送分布月数据
+     * @param appid appid
+     * @param secret secret
+     * @param wxAnalysisDate
+     * {
+     *     "begin_date": "2014-12-02",
+     *     "end_date": "2014-12-07"
+     * }
+     * @return
+     * {
+     *    "list": [
+     *        {
+     *            "ref_date": "2014-12-07",
+     *            "count_interval": 1,
+     *            "msg_user": 246
+     *        }//后续还有同一ref_date下不同count_interval的数据，及不同ref_date的数据
+     *    ]
+     * }
+     * @throws Exception
+     */
+    public static WxMsgUpstreamDistAnalysisResp getUpstreamMsgDistMonth(String appid, String secret, WxAnalysisDate wxAnalysisDate) throws Exception{
+        return JsonUtils.json2Bean(HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_MSG_UPSTREAM_DIST_MONTH), wxAnalysisDate.toJsonString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM), WxMsgUpstreamDistAnalysisResp.class);
+    }
+
+
+
+
+
 
 }

@@ -408,4 +408,30 @@ public class BaseProp {
      * 获取消息发送概况数据
      */
     public static final String WEIXIN_MSG_USTREAM_MSG = "weixin.msg.upstream.msg";
+    /**
+     * 获取消息分送分时数据
+     */
+    public static final String WEIXIN_MSG_USTREAM_MSG_HOUR = "weixin.msg.upstream.msg.hour";
+
+    /**
+     * 获取消息发送周数据
+     */
+    public static final String WEIXIN_MSG_UPSTREAM_MSG_WEEK = "weixin.msg.upstream.msg.week";
+    /**
+     * 获取消息发送月数据
+     */
+    public static final String WEIXIN_MSG_UPSTREAM_MSG_MONTH = "weixin.msg.upstream.msg.month";
+    /**
+     * 获取消息发送分布数据
+     */
+    public static final String WEIXIN_MSG_UPSTREAM_DIST = "weixin.msg.upstream.dist";
+    /**
+     * 获取消息发送分布周数据
+     */
+    public static final String WEIXIN_MSG_UPSTREAM_DIST_WEEK = "weixin.msg.upstream.dist.week";
+    /**
+     * 获取消息发送分布月数据
+     */
+    public static final String WEIXIN_MSG_UPSTREAM_DIST_MONTH = "weixin.msg.upstream.dist.month";
+
 }
