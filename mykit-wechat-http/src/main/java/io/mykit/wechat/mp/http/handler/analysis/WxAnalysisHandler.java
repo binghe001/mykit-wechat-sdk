@@ -1,5 +1,7 @@
 package io.mykit.wechat.mp.http.handler.analysis;
 
+import io.mykit.wechat.mp.beans.json.analysis.resp.api.WxAPISummaryAnalysisResp;
+import io.mykit.wechat.mp.beans.json.analysis.resp.api.WxAPISummaryHourAnalysisResp;
 import io.mykit.wechat.mp.beans.json.analysis.resp.news.msg.upstream.WxMsgUpstreamAnalysisResp;
 import io.mykit.wechat.mp.beans.json.analysis.resp.news.msg.upstream.dist.WxMsgUpstreamDistAnalysisResp;
 import io.mykit.wechat.mp.beans.json.analysis.resp.news.msg.upstream.hour.WxMsgUpstreamHourAnalysisResp;
@@ -521,8 +523,59 @@ public class WxAnalysisHandler extends BaseHandler {
     }
 
 
+    /**
+     * 获取接口分析数据
+     * @param appid appid
+     * @param secret secret
+     * @param wxAnalysisDate
+     * {
+     *     "begin_date": "2014-12-02",
+     *     "end_date": "2014-12-07"
+     * }
+     * @return
+     * {
+     *    "list": [
+     *        {
+     *            "ref_date": "2014-12-07",
+     *            "callback_count": 36974,
+     *            "fail_count": 67,
+     *            "total_time_cost": 14994291,
+     *            "max_time_cost": 5044
+     *        }//后续还有不同ref_date（在begin_date和end_date之间）的数据
+     *    ]
+     * }
+     * @throws Exception
+     */
+    public static WxAPISummaryAnalysisResp getInterfaceSummary(String appid, String secret, WxAnalysisDate wxAnalysisDate) throws Exception{
+        return JsonUtils.json2Bean(HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEXIN_API_ANALYSIS_SUMMARY), wxAnalysisDate.toJsonString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM), WxAPISummaryAnalysisResp.class);
+    }
 
 
-
-
+    /**
+     * 获取接口分析分时数据
+     * @param appid appid
+     * @param secret secret
+     * @param wxAnalysisDate
+     * {
+     *     "begin_date": "2014-12-02",
+     *     "end_date": "2014-12-07"
+     * }
+     * @return
+     * {
+     *    "list": [
+     *        {
+     *            "ref_date": "2014-12-01",
+     *            "ref_hour": 0,
+     *            "callback_count": 331,
+     *            "fail_count": 18,
+     *            "total_time_cost": 167870,
+     *            "max_time_cost": 5042
+     *        }//后续还有不同ref_hour的数据
+     *    ]
+     * }
+     * @throws Exception
+     */
+    public static WxAPISummaryHourAnalysisResp getInterfaceSummaryHour(String appid, String secret, WxAnalysisDate wxAnalysisDate) throws Exception{
+        return JsonUtils.json2Bean(HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEXIN_API_ANALYSIS_SUMMARY_HOUR), wxAnalysisDate.toJsonString(), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM), WxAPISummaryHourAnalysisResp.class);
+    }
 }

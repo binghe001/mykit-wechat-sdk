@@ -433,11 +433,13 @@ public class BaseProp {
      * 获取消息发送分布月数据
      */
     public static final String WEIXIN_MSG_UPSTREAM_DIST_MONTH = "weixin.msg.upstream.dist.month";
-
-
     /**
      * 获取接口分析数据
      */
     public static final String WEXIN_API_ANALYSIS_SUMMARY = "weixin.api.analysis.summary";
+    /**
+     * 获取接口分析分时数据
+     */
+    public static final String WEXIN_API_ANALYSIS_SUMMARY_HOUR = "weixin.api.analysis.summary.hour";
 
 }
