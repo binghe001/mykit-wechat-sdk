@@ -1,4 +1,4 @@
-package io.mykit.wechat.mp.beans.json.analysis.news.resp.article.msg.upstream.dist;
+package io.mykit.wechat.mp.beans.json.analysis.news.resp.msg.upstream.dist;
 
 import io.mykit.wechat.mp.beans.json.code.WxCode;
 import lombok.AllArgsConstructor;

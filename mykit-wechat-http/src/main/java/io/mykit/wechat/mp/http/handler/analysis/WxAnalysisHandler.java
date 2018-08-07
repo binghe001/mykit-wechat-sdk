@@ -1,10 +1,10 @@
 package io.mykit.wechat.mp.http.handler.analysis;
 
-import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.msg.upstream.WxMsgUpstreamAnalysisResp;
-import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.msg.upstream.dist.WxMsgUpstreamDistAnalysisResp;
-import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.msg.upstream.hour.WxMsgUpstreamHourAnalysisResp;
-import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.msg.upstream.month.WxMsgUpstreamMonthAnalysisResp;
-import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.msg.upstream.week.WxMsgUpstreamWeekAnalysisResp;
+import io.mykit.wechat.mp.beans.json.analysis.news.resp.msg.upstream.WxMsgUpstreamAnalysisResp;
+import io.mykit.wechat.mp.beans.json.analysis.news.resp.msg.upstream.dist.WxMsgUpstreamDistAnalysisResp;
+import io.mykit.wechat.mp.beans.json.analysis.news.resp.msg.upstream.hour.WxMsgUpstreamHourAnalysisResp;
+import io.mykit.wechat.mp.beans.json.analysis.news.resp.msg.upstream.month.WxMsgUpstreamMonthAnalysisResp;
+import io.mykit.wechat.mp.beans.json.analysis.news.resp.msg.upstream.week.WxMsgUpstreamWeekAnalysisResp;
 import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.summary.WxArticleSummaryAnalysisResp;
 import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.total.WxNewsArticleTotalAnalysisResp;
 import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.user.read.WxNewsUserReadAnalysisResp;

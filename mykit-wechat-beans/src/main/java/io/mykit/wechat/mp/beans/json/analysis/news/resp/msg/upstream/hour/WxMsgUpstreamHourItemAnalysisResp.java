@@ -1,6 +1,6 @@
-package io.mykit.wechat.mp.beans.json.analysis.news.resp.article.msg.upstream.hour;
+package io.mykit.wechat.mp.beans.json.analysis.news.resp.msg.upstream.hour;
 
-import io.mykit.wechat.mp.beans.json.analysis.news.resp.article.msg.upstream.WxMsgUpstreamItemAnalysisResp;
+import io.mykit.wechat.mp.beans.json.analysis.news.resp.msg.upstream.WxMsgUpstreamItemAnalysisResp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

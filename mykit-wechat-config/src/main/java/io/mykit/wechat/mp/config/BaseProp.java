@@ -434,4 +434,10 @@ public class BaseProp {
      */
     public static final String WEIXIN_MSG_UPSTREAM_DIST_MONTH = "weixin.msg.upstream.dist.month";
 
+
+    /**
+     * 获取接口分析数据
+     */
+    public static final String WEXIN_API_ANALYSIS_SUMMARY = "weixin.api.analysis.summary";
+
 }
