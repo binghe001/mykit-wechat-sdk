@@ -20,12 +20,13 @@ public class RedisUtils {
      */
     public static void saveValueToRedis(String key, String value, int expireTime){
         Jedis jedis = RedisBuilder.getJedis();
-        String ret = jedis.set(key, value);
-        log.debug(ret);
+        if(jedis != null){
+            String ret = jedis.set(key, value);
+            log.debug(ret);
 
-        long time = jedis.expire(key, expireTime);
-        log.debug(String.valueOf(time));
-
+            long time = jedis.expire(key, expireTime);
+            log.debug(String.valueOf(time));
+        }
     }
 
     /**
@@ -35,7 +36,7 @@ public class RedisUtils {
      */
     public static String getValueFromRedis(String key){
         Jedis jedis = RedisBuilder.getJedis();
-        if (!jedis.exists(key)) return "";
+        if (jedis == null || !jedis.exists(key)) return "";
         return jedis.get(key);
     }
 
