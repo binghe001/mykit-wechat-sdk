@@ -1,8 +1,8 @@
 package io.mykit.wechat.cache.redis;
 
-import io.mykit.wechat.cache.redis.builder.RedisBuilder;
+import io.mykit.wechat.cache.redis.builder.RedisClusterBuilder;
 import lombok.extern.slf4j.Slf4j;
-import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisCluster;
 
 /**
  * @Author: liuyazhuang
@@ -19,13 +19,10 @@ public class RedisUtils {
      * @param expireTime 过期时间,单位秒
      */
     public static void saveValueToRedis(String key, String value, int expireTime){
-        Jedis jedis = RedisBuilder.getJedis();
-        if(jedis != null){
-            String ret = jedis.set(key, value);
+        JedisCluster jedisCluster = RedisClusterBuilder.getInstance();
+        if(jedisCluster != null){
+            String ret =  jedisCluster.setex(key, expireTime, value);
             log.debug(ret);
-
-            long time = jedis.expire(key, expireTime);
-            log.debug(String.valueOf(time));
         }
     }
 
@@ -35,9 +32,9 @@ public class RedisUtils {
      * @return redis中缓存的key
      */
     public static String getValueFromRedis(String key){
-        Jedis jedis = RedisBuilder.getJedis();
-        if (jedis == null || !jedis.exists(key)) return "";
-        return jedis.get(key);
+        JedisCluster jedisCluster = RedisClusterBuilder.getInstance();
+        if (jedisCluster == null || !jedisCluster.exists(key)) return "";
+        return jedisCluster.get(key);
     }
 
 }
