@@ -15,14 +15,28 @@ mykit架构中独立出来的mykit-wechat-sdk微信开发SDK，提供通用的�
 
 ## mykit-wechat-cache
 SDK的缓存模块，目前SDK支持的缓存为Redis, 有关Redis的配置文件，SDK指定的配置文件名称为：redis.properties，若使用者未配置任何关于Redis缓存的配置，则Redis默认缓存配置如下：   
+```
+redis.cluster.node.one=10.2.2.231
+redis.cluster.node.one.port=7001
 
-`redis.host=127.0.0.1  `  
-`redis.port=6379  `  
-`redis.max_idle=200 `   
-`redis.max_wait=10000 `   
-`redis.max_total=1024  `  
-`redis.timeout=10000  `  
-`redis.test_on_borrow=true `   
+redis.cluster.node.two=10.2.2.231
+redis.cluster.node.two.port=7002
+
+redis.cluster.node.three=10.2.2.231
+redis.cluster.node.three.port=7003
+
+redis.cluster.node.four=10.2.2.231
+redis.cluster.node.four.port=7004
+
+redis.cluster.node.five=10.2.2.231
+redis.cluster.node.five.port=7005
+
+redis.cluster.node.six=10.2.2.231
+redis.cluster.node.six.port=7006
+
+redis.cluster.node.seven=10.2.2.231
+redis.cluster.node.seven.port=7006
+```   
 
 使用者也可以自行配置Redis缓存的相关参数，但必须将配置文件命名为redis.properties，放到自己工程的classpath路径下，同时，配置文件中的Key必须与默认文件提供的Key值相同。
 
