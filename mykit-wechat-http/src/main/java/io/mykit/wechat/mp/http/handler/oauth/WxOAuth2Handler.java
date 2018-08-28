@@ -327,7 +327,7 @@ public class WxOAuth2Handler extends BaseHandler {
         if (ret.contains(WxConstants.ERRCODE)){
             WxCode wxCode =  JsonUtils.json2Bean(ret, WxCode.class);
             if(wxCode.getErrcode() != WxCode.ERRCODE_NORMAL){
-                log.info(ret);
+                log.error(ret);
                 throw new RuntimeException(ret);
             }
         }
