@@ -19,24 +19,12 @@ public class AccessTokenHandler {
     private static final String WX_BASE = "base";
 
     /**
-     * 直接通过网络获取access_token
-     * @param appid appid
-     * @param secret secret
-     * @return 返回从微信获取的access_token
-     */
-    public static String getAccessToken(String appid, String secret) throws Exception{
-        WxAccessToken wxAccessToken = getWxAccessToken(appid, secret);
-        if(wxAccessToken == null) return "";
-        return wxAccessToken.getAccess_token();
-    }
-
-    /**
      * 查看本地是否存在AccessToken,本地存在则直接取缓存中的数据，本地不存在，则直接通过网络获取
      * @param appid appid
      * @param secret secret
      * @return 返回从微信获取的access_token
      */
-    public static String getAccessTokenWithCache(String appid, String secret) throws Exception{
+    public static String getAccessToken(String appid, String secret) throws Exception{
         String key = WX_BASE.concat(appid).concat(secret);
         //从缓存获取access_token
         String access_token = RedisUtils.getValueFromRedis(key);
@@ -52,6 +40,7 @@ public class AccessTokenHandler {
         }
         return access_token;
     }
+
     /**
      * 直接通过网络获取access_token
      * @param appid appid
