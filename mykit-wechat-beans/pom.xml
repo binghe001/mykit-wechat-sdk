@@ -5,18 +5,18 @@
     <parent>
         <artifactId>mykit-wechat-sdk</artifactId>
         <groupId>io.mykit.wechat.sdk</groupId>
-        <version>1.0.0</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>mykit-wechat-beans</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
             <groupId>io.mykit.wechat.sdk</groupId>
             <artifactId>mykit-wechat-utils</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>

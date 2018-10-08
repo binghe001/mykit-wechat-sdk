@@ -61,7 +61,7 @@ SDK的测试模块，提供整个SDK功能的基础测试方法
         <dependency>  
            <groupId>io.mykit.wechat.sdk</groupId>  
             <artifactId>mykit-wechat-core</artifactId>  
-            <version>1.0.0</version>  
+            <version>1.0.0-SNAPSHOT</version>  
         </dependency>
 
 
