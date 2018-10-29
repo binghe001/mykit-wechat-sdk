@@ -7,6 +7,15 @@ package io.mykit.wechat.utils.constants;
  */
 
 public class WxConstants {
+
+    /**
+     * 关注事件
+     */
+    public static final String EVENT_SUBSCRIBE = "subscribe";
+    /**
+     * 取消关注事件
+     */
+    public static final String EVENT_UNSUBSCRIBE = "unsubscribe";
     /**
      * access_token
      */
