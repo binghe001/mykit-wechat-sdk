@@ -28,6 +28,18 @@ import java.util.Arrays;
  */
 public class WechatSignUtils {
 
+    /**
+     * 检测微信签名是否正确
+     * @param token 配置的微信token
+     * @param timestamp 时间戳
+     * @param nonce 随机字符串
+     * @param signature 签名
+     * @return 是否正确：true:正确； false:错误
+     */
+    public static boolean checkSignature (String token, String timestamp, String nonce, String signature){
+        return gen(new String[]{token, timestamp, nonce}).equals(signature);
+    }
+
     public static String gen(String... arr) {
         if (StringUtils.isAnyEmpty(arr)) {
             throw new IllegalArgumentException("非法请求参数，有部分参数为空 : " + Arrays.toString(arr));
