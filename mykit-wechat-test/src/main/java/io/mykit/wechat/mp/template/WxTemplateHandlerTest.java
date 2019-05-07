@@ -52,7 +52,7 @@ public class WxTemplateHandlerTest extends BaseTest {
         wxTemplateSend.setData(wxTemplateDataSend);
 //        wxTemplateSend.setMiniprogram(wxTemplateMiniprogramSend);
         wxTemplateSend.setTemplate_id("3zvJ6CV_Pqy9BK43N_8r5-kt5dwra7OQ_MLHsSyxXko");
-        wxTemplateSend.setTouser("olhDZjvl7GADzpmkJpqqgiSzAp5M");
+        wxTemplateSend.setTouser("olhDZjpv-GZmITBOwBeb6t8KNPkw");
         wxTemplateSend.setUrl("https://www.baidu.com");
 
         log.info(wxTemplateSend.toJsonString());

@@ -3,6 +3,7 @@ package io.mykit.wechat.mp.http.handler.kfaccount;
 import com.alibaba.fastjson.JSONObject;
 import io.mykit.wechat.mp.beans.json.code.WxCode;
 import io.mykit.wechat.mp.beans.json.kfaccount.WxKfaccountBean;
+import io.mykit.wechat.mp.beans.json.kfaccount.message.WxKfaccountTextMessage;
 import io.mykit.wechat.mp.config.LoadProp;
 import io.mykit.wechat.mp.http.base.HttpConnectionUtils;
 import io.mykit.wechat.mp.http.handler.base.BaseHandler;
@@ -91,4 +92,15 @@ public class WxKfaccountHandler extends BaseHandler {
         return HttpConnectionUtils.getWechatData(LoadProp.getValue(LoadProp.WEIXIN_MENU_KFACCOUNT_GETKFLIST), getAccessTokenNameValuePairs(appid, secret), null, HttpConnectionUtils.TYPE_STREAM);
     }
 
+    /**
+     * 发送微信客服文本消息
+     * @param appid appid
+     * @param secret secret
+     * @param wxKfaccountTextMessage 微信客服文本消息数据结构
+     * @return 返回发送结果
+     * @throws Exception
+     */
+    public static String sendWxKfaccountTextMessage(String appid, String secret, WxKfaccountTextMessage wxKfaccountTextMessage) throws Exception{
+        return HttpConnectionUtils.postWechatData(LoadProp.getValue(LoadProp.WEIXIN_KFACCOUNT_MESSAGE), wxKfaccountTextMessage.toJsonString(), getAccessTokenNameValuePairs(appid,secret), null, HttpConnectionUtils.TYPE_STREAM);
+    }
 }

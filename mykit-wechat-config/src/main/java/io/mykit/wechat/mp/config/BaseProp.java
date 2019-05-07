@@ -105,6 +105,11 @@ public class BaseProp {
     public static final String WEIXIN_MENU_KFACCOUNT_GETKFLIST = "weixin.kfaccount.getkflist";
 
     /**
+     * 发送客服消息
+     */
+    public static final String WEIXIN_KFACCOUNT_MESSAGE = "weixin.kfaccount.message";
+
+    /**
      * 上传图文消息内的图片获取URL
      */
     public static final String WEIXIN_GROUP_UPLOADIMG = "weixin.group.uploadimg";
