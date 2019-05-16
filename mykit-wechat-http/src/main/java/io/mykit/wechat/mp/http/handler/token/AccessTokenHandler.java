@@ -48,7 +48,9 @@ public class AccessTokenHandler {
      * @return 返回从微信获取的access_token数据封装
      */
     private static WxAccessToken getWxAccessToken(String appid, String secret) throws Exception{
+        log.debug("传入的参数: " + appid + " <<=====>> " + secret);
         String json = AccessTokenProxy.getAccessToken(appid, secret);
+        log.debug("通过网络获取AccessToken的结果为： " + json);
         if(StringUtils.isEmpty(json) || json.contains(WxConstants.ERRCODE)){
             json = AccessTokenProxy.getAccessToken(appid, secret);
         }
