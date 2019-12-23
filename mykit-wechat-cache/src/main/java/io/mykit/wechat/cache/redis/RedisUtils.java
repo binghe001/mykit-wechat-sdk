@@ -16,6 +16,19 @@ public class RedisUtils {
      * 保存数据到redis
      * @param key 保存的数据key
      * @param value 保存的value
+     */
+    public static void saveValueToRedis(String key, String value){
+        JedisCluster jedisCluster = RedisClusterBuilder.getInstance();
+        if(jedisCluster != null){
+            String ret =  jedisCluster.set(key, value);
+            log.debug(ret);
+        }
+    }
+
+    /**
+     * 保存数据到redis
+     * @param key 保存的数据key
+     * @param value 保存的value
      * @param expireTime 过期时间,单位秒
      */
     public static void saveValueToRedis(String key, String value, int expireTime){
