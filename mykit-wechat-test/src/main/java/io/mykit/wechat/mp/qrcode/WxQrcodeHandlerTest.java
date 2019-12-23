@@ -33,7 +33,7 @@ public class WxQrcodeHandlerTest extends BaseTest {
     public void testCreateWxQrcodeForeverBySenceStr() throws Exception{
         //{"errcode":0,"errmsg":"","ticket":"gQHn8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyemg1cjlHbWdicGUxMDAwMHcwNzcAAgSqIABeAwQAAAAA","url":"http://weixin.qq.com/q/02zh5r9Gmgbpe10000w077"}
         WxQrcodeSenceId wxQrcodeSenceId = new WxQrcodeSenceId();
-        wxQrcodeSenceId.setScene_str("8a8383a85cd483f3015ce78ba9f4005f");
+        wxQrcodeSenceId.setScene_str("8a8383a458dd38d40158e180f1330022");
         WxQrcodeSence wxQrcodeSence = new WxQrcodeSence(wxQrcodeSenceId);
         WxQrcodeForever wxQrcodeForever = new WxQrcodeForever();
         wxQrcodeForever.setAction_info(wxQrcodeSence);
@@ -70,7 +70,7 @@ public class WxQrcodeHandlerTest extends BaseTest {
 
     @Test
     public void testDownloadQrcode() throws Exception{
-        WxQrcodeHandler.downloadQrcode("d:/yj_str.jpg", "gQHn8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyemg1cjlHbWdicGUxMDAwMHcwNzcAAgSqIABeAwQAAAAA");
+        WxQrcodeHandler.downloadQrcode("d:/yj_str.jpg", "gQEm8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAycWF2RzlUZFlkdjMxMDAwMDAwN1UAAgQrtwBeAwQAAAAA");
 //        WxQrcodeHandler.downloadQrcode("d:/yj_id.jpg", "gQEl8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyQXVfNDlObWdicGUxMDAwMHcwM0EAAgSjxVpbAwQAAAAA");
 //        WxQrcodeHandler.downloadQrcode("d:/ls_str.jpg", "gQEU8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyOVVDODlBbWdicGUxQXVrMnhyY2gAAgQex1pbAwQAjScA");
 //        WxQrcodeHandler.downloadQrcode("d:/ls_id.jpg", "gQE-8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyUkpFajkzbWdicGUxQWFrMnhyMWMAAgQKx1pbAwQAjScA");

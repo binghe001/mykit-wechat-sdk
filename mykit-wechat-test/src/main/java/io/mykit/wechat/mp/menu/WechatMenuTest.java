@@ -115,7 +115,7 @@ public class WechatMenuTest extends BaseTest {
         JSONArray subButtonArray3 = new JSONArray();
 
 
-     /*   JSONObject subButtonItem10 = new JSONObject();
+    /*   JSONObject subButtonItem10 = new JSONObject();
         subButtonItem10.put("type", "miniprogram");
         subButtonItem10.put("name", "健康记录");
         subButtonItem10.put("pagepath", "pages/homes/home/home");
