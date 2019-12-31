@@ -115,11 +115,11 @@ public class WechatMenuTest extends BaseTest {
         JSONArray subButtonArray3 = new JSONArray();
 
 
-    /*   JSONObject subButtonItem10 = new JSONObject();
+/*       JSONObject subButtonItem10 = new JSONObject();
         subButtonItem10.put("type", "miniprogram");
         subButtonItem10.put("name", "健康记录");
         subButtonItem10.put("pagepath", "pages/homes/home/home");
-        subButtonItem10.put("appid", "wx236aa846a79bdece");
+        subButtonItem10.put("appid", "wxe21d13d082e71cca");
         subButtonItem10.put("url", "https://mp.weixin.qq.com/s?__biz=MzI3Nzc5ODU0MQ==&tempkey=MTAwOF9BQ3plK0NWcEpOSzM0WTFoVGpmd3FnXy1XUXhNeEVYY010Z2NkRE5Qb0ZvVEpVTkdyYllpbUtpMVd3ekVOdGk5RkZEa2VJSmRicUtiRktPQW5NY3BlLVI1eWVfTXhJWERtYU4yYkxqRHV5NmFrZTFWVy1JM3cyQXZhY05tMGFIZUlOdWxlN1hYVDNfNjJReXdmYzVuY3N1LU1VREdnZllPM2x4a0hBfn4%3D&chksm=6b618a155c160303543b4d8772bead6569c2bef191f88e5fba66203e30aee8a3e5541404123a&scene=0&xtrack=1&previewkey=vYtIc5o5KtnPpqjmkwTgbcNS9bJajjJKzz%252F0By7ITJA%253D#wechat_redirect");
         subButtonArray3.add(subButtonItem10);*/
 
