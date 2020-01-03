@@ -8,6 +8,6 @@ package io.mykit.wechat.mp.base;
 
 public class BaseTest {
 
-    protected static final String APPID = "wx236aa846a79bdece";
-    protected static final String APPSECRET = "8d0929acb787bdf54be08fde687c71d3";
+    protected static final String APPID = "wxf3100cdfd4aee86c";
+    protected static final String APPSECRET = "0a0c64dfafe1fde38400b3889162b86a";
 }
