@@ -166,7 +166,7 @@ public class WxOAuth2Handler extends BaseHandler {
      * @throws Exception
      */
     public static WxOAuth2UserInfo getUserInfo(WxOAuth2GetUser wxOAuth2GetUser) throws Exception{
-        String ret = HttpConnectionUtils.getWechatData(LoadProp.WEXIN_OAUTH2_USER_GET, getAccessTokenNameValuePairs(wxOAuth2GetUser.toMap()), null, HttpConnectionUtils.TYPE_STREAM);
+        String ret = HttpConnectionUtils.getWechatData(LoadProp.getValue(LoadProp.WEXIN_OAUTH2_USER_GET), getAccessTokenNameValuePairs(wxOAuth2GetUser.toMap()), null, HttpConnectionUtils.TYPE_STREAM);
         return JsonUtils.json2Bean(ret, WxOAuth2UserInfo.class);
     }
 
