@@ -90,12 +90,16 @@ public class ReflectMap {
 		}   
 		Map<String, Object> map = new HashMap<String, Object>();    
 		try {
-			Field[] declaredFields = obj.getClass().getDeclaredFields();    
-			for (Field field : declaredFields) {    
-				field.setAccessible(true);
-				if (field.get(obj) != null){
-					map.put(field.getName(), field.get(obj));
+			Class<?> clazz =  obj.getClass();
+			while (clazz != null){
+				Field[] declaredFields = clazz.getDeclaredFields();
+				for (Field field : declaredFields) {
+					field.setAccessible(true);
+					if (field.get(obj) != null){
+						map.put(field.getName(), field.get(obj));
+					}
 				}
+				clazz = clazz.getSuperclass();
 			}
 			if(map.containsKey("serialVersionUID")){
 				map.remove("serialVersionUID");
