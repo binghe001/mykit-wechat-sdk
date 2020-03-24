@@ -1,8 +1,10 @@
 package io.mykit.wechat.mp.user;
 
 import io.mykit.wechat.mp.base.BaseTest;
+import io.mykit.wechat.mp.beans.json.oauth.WxOAuth2GetUser;
 import io.mykit.wechat.mp.beans.json.user.tag.*;
 import io.mykit.wechat.mp.http.handler.user.WxUserHandler;
+import io.mykit.wechat.utils.map.ReflectMap;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -59,5 +61,14 @@ public class WxUserHandlerTest extends BaseTest {
         WxUserTagOpenId wxUserTagOpenId = new WxUserTagOpenId();
         log.info(wxUserTagOpenId.toMap().toString());
         log.info(WxUserHandler.getUserBlackList(APPID, APPSECRET, wxUserTagOpenId).toJsonString());
+    }
+
+    @Test
+    public void testWxOAuth2GetUserTest()throws Exception{
+        WxOAuth2GetUser wxOAuth2GetUser = new WxOAuth2GetUser();
+        wxOAuth2GetUser.setOpenid("ojTxfw5HQgBheU3j-NgNwjVXL6mA");
+        wxOAuth2GetUser.setLang("zh_CN");
+        wxOAuth2GetUser.setAccess_token("27273878");
+        System.out.println(wxOAuth2GetUser.toMap());
     }
 }

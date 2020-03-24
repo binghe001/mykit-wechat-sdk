@@ -39,8 +39,11 @@ public class WechatMenuTest extends BaseTest {
 
         JSONObject subButtonItem1 = new JSONObject();
         subButtonItem1.put("type", "view");
-        subButtonItem1.put("name", "签到有礼");
-        subButtonItem1.put("url", "https://14ldroa8.haoyebao.com/v2/index.php?act=tag&store_id=14ldroa8&tag_id=14ldw5b2&p_branch_id=14ldtnlu");
+        //subButtonItem1.put("name", "签到有礼");
+        //subButtonItem1.put("url", "https://14ldroa8.haoyebao.com/v2/index.php?act=tag&store_id=14ldroa8&tag_id=14ldw5b2&p_branch_id=14ldtnlu");
+
+        subButtonItem1.put("name", "疫情动态");
+        subButtonItem1.put("url", "http://t.cn/A6PTpXwL");
         subButtonArray1.add(subButtonItem1);
 
         JSONObject subButtonItem2 = new JSONObject();
@@ -62,7 +65,8 @@ public class WechatMenuTest extends BaseTest {
         subButtonItem4.put("url", "http://cluster.cardiochina.net/baike.html");
         subButtonArray1.add(subButtonItem4);
 
-        subButton1.put("name", "关心课堂");
+        //subButton1.put("name", "关心课堂");
+        subButton1.put("name", "疫情动态");
         subButton1.put("sub_button", subButtonArray1);
 
         buttonArray.add(subButton1);
@@ -86,8 +90,10 @@ public class WechatMenuTest extends BaseTest {
 
         JSONObject subButtonItem7 = new JSONObject();
         subButtonItem7.put("type", "view");
-        subButtonItem7.put("name", "社区问诊");
-        subButtonItem7.put("url", "http://wx.cdmn.com/fdConsultWX/minHtml/login.html?hospitalId=8a8383af60747eb8016096fdb3dd0144");
+//        subButtonItem7.put("name", "社区问诊");
+//        subButtonItem7.put("url", "http://wx.cdmn.com/fdConsultWX/minHtml/login.html?hospitalId=8a8383af60747eb8016096fdb3dd0144");
+        subButtonItem7.put("name", "免费咨询");
+        subButtonItem7.put("url", "http://wx.cdmn.com/fdConsultWX/minHtml/teamDetail.html?teamId=8a8383a761413afa0161417ac7d7000b&isSign=&askBodyType=type_team&askBodyId=8a8383a761413afa0161417ac7d7000b&askBodyName=6218201C75AB201D514D8D394E498BCA670D52A156E2961F&askType=type_charge&hospitalId=8a8383af60747eb8016096fdb3dd0144");
         subButtonArray2.add(subButtonItem7);
 
         JSONObject subButtonItem8 = new JSONObject();
@@ -105,7 +111,8 @@ public class WechatMenuTest extends BaseTest {
 
 
 
-        subButton2.put("name", "医疗服务");
+        subButton2.put("name", "战疫咨询");
+        //subButton2.put("name", "医疗服务");
         subButton2.put("sub_button", subButtonArray2);
 
         buttonArray.add(subButton2);
@@ -132,8 +139,8 @@ public class WechatMenuTest extends BaseTest {
 
         JSONObject subButtonItem12 = new JSONObject();
         subButtonItem12.put("type", "view");
-        subButtonItem12.put("name", "签约服务");
-        subButtonItem12.put("url", "http://wx.cdmn.com/medcare/dest/client/fdSignWX/index.html?hospitalId=8a8383af60747eb8016096fdb3dd0144");
+        subButtonItem12.put("name", "可享服务");
+        subButtonItem12.put("url", "http://wx.cdmn.com/html/medcare/dest/client/fdSignWX/recordVA.html?hospitalId=8a8383af60747eb8016096fdb3dd0144");
         subButtonArray3.add(subButtonItem12);
 
         JSONObject subButtonItem13 = new JSONObject();
