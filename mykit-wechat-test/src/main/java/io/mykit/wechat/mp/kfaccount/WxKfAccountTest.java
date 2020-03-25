@@ -50,7 +50,7 @@ public class WxKfAccountTest extends BaseTest {
         WxKfaccountNewsMessage wxKfaccountNewsMessage = new WxKfaccountNewsMessage();
         wxKfaccountNewsMessage.setNews(wxKfaccountNewsArticlesMessage);
         wxKfaccountNewsMessage.setMsgtype("news");
-        wxKfaccountNewsMessage.setTouser("ojTxfw2HplPxJMhNVJXQnPJ3Avqs");
+        wxKfaccountNewsMessage.setTouser("ojTxfw9P2e6BDavqBFq7G_vwASLg");
         return wxKfaccountNewsMessage;
     }
 
