@@ -174,8 +174,8 @@ public class WechatMenuTest extends BaseTest {
         log.info(button.toJSONString());
 
         try {
-            WxCode wxCode = WxMenuHandler.createWxMenu(APPID, APPSECRET, button.toJSONString());
-            log.info(wxCode.toJsonString());
+           // WxCode wxCode = WxMenuHandler.createWxMenu(APPID, APPSECRET, button.toJSONString());
+            //log.info(wxCode.toJsonString());
         } catch (Exception e) {
             e.printStackTrace();
         }
