@@ -33,7 +33,7 @@
         <reflectasm.version>1.05</reflectasm.version>
         <xstream.version>1.4.10</xstream.version>
         <jedis.version>2.9.0</jedis.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
     </properties>
 
     <distributionManagement>
